@@ -1,2 +1,2 @@
 # Yingdun
-Spam movie review detection framework and movie spammer mining system.
+Spam movie review detection framework and movie spam user mining system.

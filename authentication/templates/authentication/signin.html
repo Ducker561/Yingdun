@@ -60,7 +60,7 @@
                     <li><a href="#contact-section" class="nav-link">Contact</a></li>
                 </ul> -->
                 <ul class="js-clone-nav d-none mt-1 d-lg-inline-block site-menu float-right">
-                    <li class="cta-button-outline"><a href="">登录</a></li>
+                    <li class="cta-button-outline"><a href="#">登录</a></li>
                     <li class="cta-primary"><a href="register">注册</a></li>
                 </ul>
                 <a href="#"
@@ -77,20 +77,22 @@
                 <div class="col-lg-5">
                     <div class="custom-box" data-aos="fade-up" data-aos-delay="0">
                         <h2 class="heading">登 录 系 统</h2>
-                        <div action="#"> <!--form-->
+                        <form method="post" action="/authentication/check_login/"> <!--form-->
+                            {% csrf_token%}
                             <div class="form-field">
                                 <label for="text">账号</label>
-                                <input type="text" class="form-control" id="userid">
+                                <input type="text" class="form-control" id="userid" name="userid">
                             </div>
                             <div class="form-field">
                                 <label for="password">密码</label>
-                                <input type="password" class="form-control" id="userpwd">
+                                <input type="password" class="form-control" id="userpwd" name="userpwd">
                             </div>
                             <div class="form-field">
-                                <input type="submit" class="btn btn-primary btn-block" value="登 录"
-                                    onclick="login()">
+                                <input type="submit" class="btn btn-primary btn-block" value="登 录">
+                                    <!-- onclick="login()"> -->
                             </div>
-                        </div>
+                            <p style="color: red;text-align: center">{{ error_msg }}</p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -198,37 +200,6 @@
         defer=""></script>
 </body>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-<script type="text/javascript">
-    login = function () {
-        var userid = $('#userid').val();
-        var userpwd = $('#userpwd').val();
-        if (userid == "" || userpwd == "") {
-            alert("请填写正确的用户名和密码。");
-            return;
-        }
-        var login_data = {
-            'type': 'login',
-            'userid': userid,
-            'userpwd': md5(userpwd),
-            'csrfmiddlewaretoken': '{{ csrf_token }}'
-        };
-        $.ajax({
-            url: 'check_login/',
-            type: "POST",
-            data: login_data,
-            dataType: "json",
-            success: function (data) {
-                if (data.res == 1) {
-                    window.location.href = "/"
-                }
-                else {
-                    alert("用户名或密码错误");
-                    $("#userid").val("");
-                    $("#userpwd").val("");
-                }
-            }
-        })
-    }
-</script>
+
 
 </html>

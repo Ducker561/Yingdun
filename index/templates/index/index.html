@@ -1,1166 +1,802 @@
-{% load static %}
+﻿{% load static %}
 <!doctype html>
-<html lang="en">
-
+<html>
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--favicon-->
-	<link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" />
-	<!--plugins-->
-	<link href="{% static 'plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet"/>
-	<link href="{% static 'plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
-	<link href="{% static 'plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
-	<link href="{% static 'plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
-	<!-- loader-->
-	<link href="{% static 'css/pace.min.css' %}" rel="stylesheet" />
-	<script src="{% static 'js/pace.min.js' %}"></script>
-	<!-- Bootstrap CSS -->
-	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-	<link href="{% static 'css/app.css' %}" rel="stylesheet">
-	<link href="{% static 'css/icons.css' %}" rel="stylesheet">
-	<!-- Theme Style CSS -->
-	<link rel="stylesheet" href="{% static 'css/dark-theme.css' %}" />
-	<link rel="stylesheet" href="{% static 'css/semi-dark.css' %}" />
-	<link rel="stylesheet" href="{% static 'css/header-colors.css' %}" />
-	<title>影盾 - 守护佳影 盾卫真实</title>
+    <meta charset="utf-8">
+    <title>影盾 - 大数据展示平台</title>
+    <script type="text/javascript" src="{% static 'index/js/jquery.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'index/css/comon0.css' %}">
 </head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var html=$(".wrap ul").html()
+		$(".wrap ul").append(html)
+		var ls=$(".wrap li").length/2+1
+		i=0
+		ref = setInterval(function(){
+			i++
+			if(i==ls){
+				i=1
+				$(".wrap ul").css({marginTop:0})
+				$(".wrap ul").animate({marginTop:-'.52'*i+'rem'},1000)
+			}
+	    	$(".wrap ul").animate({marginTop:-'.52'*i+'rem'},1000)
 
+
+		},2400);
+
+
+
+				var html2=$(".adduser ul").html()
+		$(".adduser ul").append(html2)
+		var ls2=$(".adduser li").length/2+1
+		a=0
+		ref = setInterval(function(){
+			a++
+			if(a==ls2){
+				a=1
+				$(".adduser ul").css({marginTop:0})
+				$(".adduser ul").animate({marginTop:-'.5'*a+'rem'},800)
+			}
+	    	$(".adduser ul").animate({marginTop:-'.5'*a+'rem'},800)
+
+
+		},4300);
+	})
+</script>
 <body>
-	<!--wrapper-->
-	<div class="wrapper">
-		<!--sidebar wrapper -->
-		<div class="sidebar-wrapper" data-simplebar="true">
-			<div class="sidebar-header">
-				<div>
-					<img src="{% static 'images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
-				</div>
-				<div>
-					<h4 class="logo-text">  影 盾</h4>
-				</div>
-				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
-				</div>
-			</div>
-			<!--navigation-->
-			<ul class="metismenu" id="menu">
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-line-chart'></i>
-						</div>
-						<div class="menu-title">大屏展示</div>
-					</a>
-					<ul>
-						<li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>可视化展示</a>
-						</li>
-						
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-bug"></i>
-						</div>
-						<div class="menu-title">爬虫管理</div>
-					</a>
-					<ul>
-						<li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>豆瓣爬虫</a>
-						</li>
-						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>猫眼爬虫</a>
-						</li>
-						<li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>社交媒体爬虫</a>
-						</li>
-					
-					</ul>
-				</li>
-			
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-world'></i>
-						</div>
-						<div class="menu-title">电影威胁感知</div>
-					</a>
-					<ul>
-						<li> <a href="ecommerce-products.html"><i class="bx bx-right-arrow-alt"></i>电影情况展示</a>
-						</li>
-						<li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>恶意评论分析</a>
-						</li>
-						<li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>恶意用户分析</a>
-						</li>
-					
-					</ul>
-				</li>
+    <div class="loading">
+        <div class="loadbox"> <img src="{% static 'index/images/loading.gif' %}"> 页面加载中... </div>
+    </div>
+    <div class="head">
+        <h1><img src="{% static 'index/images/logo.png' %}">影盾大数据展示平台</h1>
+        <div class="weather"><!--<img src="{% static 'index/images/weather.png' %}"><span>多云转小雨</span>--><span id="showTime"></span></div>
+    </div>
+    <script>
+        var t = null;
+            t = setTimeout(time,1000);//开始运行
+            function time()
+            {
+               clearTimeout(t);//清除定时器
+               dt = new Date();
+                var y=dt.getFullYear();
+                var mt=dt.getMonth()+1;
+                var day=dt.getDate();
+               var h=dt.getHours();//获取时
+               var m=dt.getMinutes();//获取分
+               var s=dt.getSeconds();//获取秒
+               document.getElementById("showTime").innerHTML = y+"年"+mt+"月"+day+"日"+h+"时"+m+"分"+s+"秒";
+               t = setTimeout(time,1000); //设定定时器，循环运行     
+            } 
+    </script>
+    <div class="mainbox">
+        <ul class="clearfix">
+            <li>
+                <div class="boxall" style="height: 2.7rem">
+                    <div class="alltitle">基本情况</div>
 
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="bx bx-user-pin"></i>
-						</div>
-						<div class="menu-title">水军用户画像</div>
-					</a>
-					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>水军用户列表</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="bx bx-atom"></i>
-						</div>
-						<div class="menu-title">水军群体画像</div>
-					</a>
-					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>水军群体列表</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体行为分析</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体言论分析</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体关系分析</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="bx bx-bell"></i>
-						</div>
-						<div class="menu-title">告警管理</div>
-					</a>
-					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>恶意用户画像</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军组织溯源</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="bx bx-shield"></i>
-						</div>
-						<div class="menu-title">系统管理</div>
-					</a>
-					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>恶意用户画像</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军组织溯源</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"> <i class="bx bx-happy"></i>
-						</div>
-						<div class="menu-title">个人中心</div>
-					</a>
-					<ul>
-						<li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>个人中心</a>
-						</li>
-						<li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>告警设置</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-			<!--end navigation-->
-		</div>
-		<!--end sidebar wrapper -->
-		<!--start header -->
-		<header>
-			<div class="topbar d-flex align-items-center">
-				<nav class="navbar navbar-expand">
-					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
-					</div>
-					<div class="search-bar flex-grow-1">
-						<div class="position-relative search-bar-box">
-							<input type="text" class="form-control search-control" placeholder="搜一搜"> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
-							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
-						</div>
-					</div>
-					<div class="top-menu ms-auto">
-						<ul class="navbar-nav align-items-center">
-							<li class="nav-item mobile-search-icon">
-								<a class="nav-link" href="#">	<i class='bx bx-search'></i>
-								</a>
-							</li>
-							<li class="nav-item dropdown dropdown-large">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-end">
-									<div class="row row-cols-3 g-3 p-3">
-										<div class="col text-center">
-											<div class="app-box mx-auto bg-gradient-cosmic text-white"><i class='bx bx-group'></i>
-											</div>
-											<div class="app-title">Teams</div>
-										</div>
-										<div class="col text-center">
-											<div class="app-box mx-auto bg-gradient-burning text-white"><i class='bx bx-atom'></i>
-											</div>
-											<div class="app-title">Projects</div>
-										</div>
-										<div class="col text-center">
-											<div class="app-box mx-auto bg-gradient-lush text-white"><i class='bx bx-shield'></i>
-											</div>
-											<div class="app-title">Tasks</div>
-										</div>
-										<div class="col text-center">
-											<div class="app-box mx-auto bg-gradient-kyoto text-dark"><i class='bx bx-notification'></i>
-											</div>
-											<div class="app-title">Feeds</div>
-										</div>
-										<div class="col text-center">
-											<div class="app-box mx-auto bg-gradient-blues text-dark"><i class='bx bx-file'></i>
-											</div>
-											<div class="app-title">Files</div>
-										</div>
-										<div class="col text-center">
-											<div class="app-box mx-auto bg-gradient-moonlit text-white"><i class='bx bx-filter-alt'></i>
-											</div>
-											<div class="app-title">Alerts</div>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="nav-item dropdown dropdown-large">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">7</span>
-									<i class='bx bx-bell'></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;">
-										<div class="msg-header">
-											<p class="msg-header-title">Notifications</p>
-											<p class="msg-header-clear ms-auto">Marks all as read</p>
-										</div>
-									</a>
-									<div class="header-notifications-list">
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-primary text-primary"><i class="bx bx-group"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Customers<span class="msg-time float-end">14 Sec
-												ago</span></h6>
-													<p class="msg-info">5 new user registered</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-danger text-danger"><i class="bx bx-cart-alt"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
-												ago</span></h6>
-													<p class="msg-info">You have recived new orders</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-success text-success"><i class="bx bx-file"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">24 PDF File<span class="msg-time float-end">19 min
-												ago</span></h6>
-													<p class="msg-info">The pdf files generated</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-warning text-warning"><i class="bx bx-send"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Time Response <span class="msg-time float-end">28 min
-												ago</span></h6>
-													<p class="msg-info">5.1 min avarage time response</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-info text-info"><i class="bx bx-home-circle"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Product Approved <span
-												class="msg-time float-end">2 hrs ago</span></h6>
-													<p class="msg-info">Your new product has approved</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-danger text-danger"><i class="bx bx-message-detail"></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New Comments <span class="msg-time float-end">4 hrs
-												ago</span></h6>
-													<p class="msg-info">New customer comments recived</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-success text-success"><i class='bx bx-check-square'></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5 hrs
-												ago</span></h6>
-													<p class="msg-info">Successfully shipped your item</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-primary text-primary"><i class='bx bx-user-pin'></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
-												ago</span></h6>
-													<p class="msg-info">24 new authors joined last week</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="notify bg-light-warning text-warning"><i class='bx bx-door-open'></i>
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Defense Alerts <span class="msg-time float-end">2 weeks
-												ago</span></h6>
-													<p class="msg-info">45% less alerts last 4 weeks</p>
-												</div>
-											</div>
-										</a>
-									</div>
-									<a href="javascript:;">
-										<div class="text-center msg-footer">View All Notifications</div>
-									</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown dropdown-large">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
-									<i class='bx bx-comment'></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;">
-										<div class="msg-header">
-											<p class="msg-header-title">Messages</p>
-											<p class="msg-header-clear ms-auto">Marks all as read</p>
-										</div>
-									</a>
-									<div class="header-message-list">
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-1.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
-												ago</span></h6>
-													<p class="msg-info">The standard chunk of lorem</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-26.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
-												sec ago</span></h6>
-													<p class="msg-info">Many desktop publishing packages</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-3.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
-												ago</span></h6>
-													<p class="msg-info">Various versions have evolved over</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-4.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
-												min ago</span></h6>
-													<p class="msg-info">Making this the first true generator</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-5.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
-												ago</span></h6>
-													<p class="msg-info">Duis aute irure dolor in reprehenderit</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-6.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
-												ago</span></h6>
-													<p class="msg-info">The passage is attributed to an unknown</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-7.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
-												ago</span></h6>
-													<p class="msg-info">The point of using Lorem</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-8.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
-												ago</span></h6>
-													<p class="msg-info">It was popularised in the 1960s</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-9.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
-												ago</span></h6>
-													<p class="msg-info">Various versions have evolved over</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-10.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2 days
-												ago</span></h6>
-													<p class="msg-info">If you are going to use a passage</p>
-												</div>
-											</div>
-										</a>
-										<a class="dropdown-item" href="javascript:;">
-											<div class="d-flex align-items-center">
-												<div class="user-online">
-													<img src="{% static 'images/avatars/avatar-11.png' %}" class="msg-avatar" alt="user avatar">
-												</div>
-												<div class="flex-grow-1">
-													<h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
-												ago</span></h6>
-													<p class="msg-info">All the Lorem Ipsum generators</p>
-												</div>
-											</div>
-										</a>
-									</div>
-									<a href="javascript:;">
-										<div class="text-center msg-footer">View All Messages</div>
-									</a>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="user-box dropdown">
-						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="{% static 'images/avatars/avatar-26.png' %}" class="user-img" alt="user avatar">
-							<div class="user-info ps-3">
-								<p class="user-name mb-0">黄倩倩</p>
-								<p class="designattion mb-0">第四组</p>
-							</div>
-						</a>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>Downloads</span></a>
-							</li>
-							<li>
-								<div class="dropdown-divider mb-0"></div>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</header>
-		<!--end header -->
-		<!--start page wrapper -->
-		<div class="page-wrapper">
-			<div class="page-content">
-				<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-                   <div class="col">
-					 <div class="card radius-10 border-start border-0 border-3 border-info">
-						<div class="card-body">
-							<div class="d-flex align-items-center">
-								<div>
-									<p class="mb-0 text-secondary">电影总数</p>
-									<h4 class="my-1 text-info">705</h4>
-									<p class="mb-0 font-13">+2.5% from last week</p>
-								</div>
-								<div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class='bx bxs-cart'></i>
-								</div>
-							</div>
-						</div>
-					 </div>
-				   </div>
-				   <div class="col">
-					<div class="card radius-10 border-start border-0 border-3 border-danger">
-					   <div class="card-body">
-						   <div class="d-flex align-items-center">
-							   <div>
-								   <p class="mb-0 text-secondary">评论总条数</p>
-								   <h4 class="my-1 text-danger">+1045.3k</h4>
-								   <p class="mb-0 font-13">+5.4% from last week</p>
-							   </div>
-							   <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i class='bx bxs-wallet'></i>
-							   </div>
-						   </div>
-					   </div>
-					</div>
-				  </div>
-				  <div class="col">
-					<div class="card radius-10 border-start border-0 border-3 border-success">
-					   <div class="card-body">
-						   <div class="d-flex align-items-center">
-							   <div>
-								   <p class="mb-0 text-secondary">恶意评论条数</p>
-								   <h4 class="my-1 text-success">210.6k</h4>
-								   <p class="mb-0 font-13">+4.5% from last week</p>
-							   </div>
-							   <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i class='bx bxs-bar-chart-alt-2' ></i>
-							   </div>
-						   </div>
-					   </div>
-					</div>
-				  </div>
-				  <div class="col">
-					<div class="card radius-10 border-start border-0 border-3 border-warning">
-					   <div class="card-body">
-						   <div class="d-flex align-items-center">
-							   <div>
-								   <p class="mb-0 text-secondary">恶意用户</p>
-								   <h4 class="my-1 text-warning">8.4K</h4>
-								   <p class="mb-0 font-13">+8.4% from last week</p>
-							   </div>
-							   <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i class='bx bxs-group'></i>
-							   </div>
-						   </div>
-					   </div>
-					</div>
-				  </div> 
-				</div>
-				<!--end row-->
-
-				<div class="row">
-                   <div class="col-12 col-lg-8">
-                      <div class="card radius-10">
-						  <div class="card-body">
-							<div class="d-flex align-items-center">
-								<div>
-									<h6 class="mb-0">电影评论排行榜</h6>
-								</div>
-								<div class="dropdown ms-auto">
-									<a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="javascript:;">Action</a>
-										</li>
-										<li><a class="dropdown-item" href="javascript:;">Another action</a>
-										</li>
-										<li>
-											<hr class="dropdown-divider">
-										</li>
-										<li><a class="dropdown-item" href="javascript:;">Something else here</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="d-flex align-items-center ms-auto font-13 gap-2 my-3">
-								<span class="border px-1 rounded cursor-pointer"><i class="bx bxs-circle me-1" style="color: #14abef"></i>评论总条数</span>
-								<span class="border px-1 rounded cursor-pointer"><i class="bx bxs-circle me-1" style="color: #ffc107"></i>恶意评论条数</span>
-							</div>
-							<div class="chart-container-1">
-								<canvas id="chart1" style="display: block; height: 260px; width: 506px;" class="chartjs-render-monitor" width="1012" height="520"></canvas>
-							  </div>
-						  </div>
-						  <div class="row row-cols-1 row-cols-md-3 row-cols-xl-3 g-0 row-group text-center border-top">
-							<div class="col">
-							  <div class="p-3">
-								<h5 class="mb-0">24.15M</h5>
-								<small class="mb-0">Overall Visitor <span> <i class="bx bx-up-arrow-alt align-middle"></i> 2.43%</span></small>
-							  </div>
-							</div>
-							<div class="col">
-							  <div class="p-3">
-								<h5 class="mb-0">12:38</h5>
-								<small class="mb-0">Visitor Duration <span> <i class="bx bx-up-arrow-alt align-middle"></i> 12.65%</span></small>
-							  </div>
-							</div>
-							<div class="col">
-							  <div class="p-3">
-								<h5 class="mb-0">639.82</h5>
-								<small class="mb-0">Pages/Visit <span> <i class="bx bx-up-arrow-alt align-middle"></i> 5.62%</span></small>
-							  </div>
-							</div>
-						  </div>
-					  </div>
-				   </div>
-				   <div class="col-12 col-lg-4">
-                       <div class="card radius-10">
-						   <div class="card-body">
-							<div class="d-flex align-items-center">
-								<div> 
-									<h6 class="mb-0">电影总票房</h6>
-								</div>
-								<div class="dropdown ms-auto">
-									<a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="javascript:;">Action</a>
-										</li>
-										<li><a class="dropdown-item" href="javascript:;">Another action</a>
-										</li>
-										<li>
-											<hr class="dropdown-divider">
-										</li>
-										<li><a class="dropdown-item" href="javascript:;">Something else here</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="chart-container-2 mt-4">
-								<canvas id="chart2"></canvas>
-							  </div>
-						   </div>
-						   <ul class="list-group list-group-flush">
-							<li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">熊出没·伴我“熊芯” <span class="badge bg-success rounded-pill">12</span>
-							</li>
-							<li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">阿凡达：水之道 <span class="badge bg-danger rounded-pill">15</span>
-							</li>
-							<li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">流浪地球2 <span class="badge bg-primary rounded-pill">35</span>
-							</li>
-							<li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">满江红 <span class="badge bg-warning text-dark rounded-pill">38</span>
-							</li>
-						</ul>
-					   </div>
-				   </div>
-				</div><!--end row-->
-
-				 <div class="card radius-10">
-                         <div class="card-body">
-							<div class="d-flex align-items-center">
-								<div>
-									<h6 class="mb-0">Recent Orders</h6>
-								</div>
-								<div class="dropdown ms-auto">
-									<a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="javascript:;">Action</a>
-										</li>
-										<li><a class="dropdown-item" href="javascript:;">Another action</a>
-										</li>
-										<li>
-											<hr class="dropdown-divider">
-										</li>
-										<li><a class="dropdown-item" href="javascript:;">Something else here</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						 <div class="table-responsive">
-						   <table class="table align-middle mb-0">
-							<thead class="table-light">
-							 <tr>
-							   <th>Product</th>
-							   <th>Photo</th>
-							   <th>Product ID</th>
-							   <th>Status</th>
-							   <th>Amount</th>
-							   <th>Date</th>
-							   <th>Shipping</th>
-							 </tr>
-							 </thead>
-							 <tbody><tr>
-							  <td>Iphone 5</td>
-							  <td><img src="{% static 'images/products/01.png' %}" class="product-img-2" alt="product img"></td>
-							  <td>#9405822</td>
-							  <td><span class="badge bg-gradient-quepal text-white shadow-sm w-100">Paid</span></td>
-							  <td>$1250.00</td>
-							  <td>03 Feb 2020</td>
-							  <td><div class="progress" style="height: 6px;">
-									<div class="progress-bar bg-gradient-quepal" role="progressbar" style="width: 100%"></div>
-								  </div></td>
-							 </tr>
-		  
-							 <tr>
-							  <td>Earphone GL</td>
-							  <td><img src="{% static 'images/products/02.png' %}" class="product-img-2" alt="product img"></td>
-							  <td>#8304620</td>
-							  <td><span class="badge bg-gradient-blooker text-white shadow-sm w-100">Pending</span></td>
-							  <td>$1500.00</td>
-							  <td>05 Feb 2020</td>
-							  <td><div class="progress" style="height: 6px;">
-									<div class="progress-bar bg-gradient-blooker" role="progressbar" style="width: 60%"></div>
-								  </div></td>
-							 </tr>
-		  
-							 <tr>
-							  <td>HD Hand Camera</td>
-							  <td><img src="{% static 'images/products/03.png' %}" class="product-img-2" alt="product img"></td>
-							  <td>#4736890</td>
-							  <td><span class="badge bg-gradient-bloody text-white shadow-sm w-100">Failed</span></td>
-							  <td>$1400.00</td>
-							  <td>06 Feb 2020</td>
-							  <td><div class="progress" style="height: 6px;">
-									<div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 70%"></div>
-								  </div></td>
-							 </tr>
-		  
-							 <tr>
-							  <td>Clasic Shoes</td>
-							  <td><img src="{% static 'images/products/04.png' %}" class="product-img-2" alt="product img"></td>
-							  <td>#8543765</td>
-							  <td><span class="badge bg-gradient-quepal text-white shadow-sm w-100">Paid</span></td>
-							  <td>$1200.00</td>
-							  <td>14 Feb 2020</td>
-							  <td><div class="progress" style="height: 6px;">
-									<div class="progress-bar bg-gradient-quepal" role="progressbar" style="width: 100%"></div>
-								  </div></td>
-							 </tr>
-							 <tr>
-							  <td>Sitting Chair</td>
-							  <td><img src="{% static 'images/products/06.png' %}" class="product-img-2" alt="product img"></td>
-							  <td>#9629240</td>
-							  <td><span class="badge bg-gradient-blooker text-white shadow-sm w-100">Pending</span></td>
-							  <td>$1500.00</td>
-							  <td>18 Feb 2020</td>
-							  <td><div class="progress" style="height: 6px;">
-									<div class="progress-bar bg-gradient-blooker" role="progressbar" style="width: 60%"></div>
-								  </div></td>
-							 </tr>
-							 <tr>
-							  <td>Hand Watch</td>
-							  <td><img src="{% static 'images/products/05.png' %}" class="product-img-2" alt="product img"></td>
-							  <td>#8506790</td>
-							  <td><span class="badge bg-gradient-bloody text-white shadow-sm w-100">Failed</span></td>
-							  <td>$1800.00</td>
-							  <td>21 Feb 2020</td>
-							  <td><div class="progress" style="height: 6px;">
-									<div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 40%"></div>
-								  </div></td>
-							 </tr>
-						    </tbody>
-						  </table>
-						  </div>
-						 </div>
-					</div>
+                    <div class="sycm">
+                        <ul class="clearfix">
+                            <li><h2>52</h2><span>今日恶意评论</span></li>
+                            <li><h2>23</h2><span>今日恶意用户</span></li>
+                            <li><h2>31</h2><span>总水军团体数</span></li>
+                        </ul>
+                        <div style="border-bottom: 1px solid rgba(255,255,255,.1)"></div>
+                        <ul class="clearfix">
+                            <li><h2>2</h2><span>爬虫运行数</span></li>
+                            <li><h2>11</h2><span>告警次数</span></li>
+                            <li><h2>0.12</h2><span>恶意影响因子</span></li>
+                        </ul>
 
 
-					<div class="row">
-						<div class="col-12 col-lg-7 col-xl-8 d-flex">
-						  <div class="card radius-10 w-100">
-							<div class="card-header bg-transparent">
-								<div class="d-flex align-items-center">
-									<div>
-										<h6 class="mb-0">Recent Orders</h6>
-									</div>
-									<div class="dropdown ms-auto">
-										<a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-										</a>
-										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="javascript:;">Action</a>
-											</li>
-											<li><a class="dropdown-item" href="javascript:;">Another action</a>
-											</li>
-											<li>
-												<hr class="dropdown-divider">
-											</li>
-											<li><a class="dropdown-item" href="javascript:;">Something else here</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							   </div>
-							 <div class="card-body">
-								<div class="row">
-								  <div class="col-lg-7 col-xl-8 border-end">
-									 <div id="geographic-map-2"></div>
-								  </div>
-								  <div class="col-lg-5 col-xl-4">
-			                       
-									<div class="mb-4">
-									<p class="mb-2"><i class="flag-icon flag-icon-us me-1"></i> USA <span class="float-end">70%</span></p>
-									<div class="progress" style="height: 7px;">
-										 <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 70%"></div>
-									 </div>
-									</div>
-			   
-									<div class="mb-4">
-									 <p class="mb-2"><i class="flag-icon flag-icon-ca me-1"></i> Canada <span class="float-end">65%</span></p>
-									 <div class="progress" style="height: 7px;">
-										 <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 65%"></div>
-									 </div>
-									</div>
-			   
-									<div class="mb-4">
-									 <p class="mb-2"><i class="flag-icon flag-icon-gb me-1"></i> England <span class="float-end">60%</span></p>
-									 <div class="progress" style="height: 7px;">
-										 <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 60%"></div>
-									   </div>
-									</div>
-			   
-									<div class="mb-4">
-									 <p class="mb-2"><i class="flag-icon flag-icon-au me-1"></i> Australia <span class="float-end">55%</span></p>
-									 <div class="progress" style="height: 7px;">
-										 <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 55%"></div>
-									   </div>
-									</div>
-			   
-									<div class="mb-4">
-									 <p class="mb-2"><i class="flag-icon flag-icon-in me-1"></i> India <span class="float-end">50%</span></p>
-									 <div class="progress" style="height: 7px;">
-										 <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 50%"></div>
-									   </div>
-									</div>
+                    </div>
+                    <div class="boxfoot"></div>
+                </div>
+                <!-- <div class="boxall" style="height: 2.65rem">
+                    <div class="alltitle">消费占比</div>
+                    <div class="sy" id="echarts1"></div>
+                    <div class="sy" id="echarts2"></div>
+                    <div class="sy" id="echarts3"></div>
+                    <div class="boxfoot"></div>
+                </div> -->
+                <div class="boxall" style="height: 2.65rem" >
+                    <div class="alltitle">各电影恶意评论统计</div>
+                    <div class="allnav" id="echart2" style="height: 2.0rem; width: 100%;"></div>
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall" style="height: 2.95rem">
+                    <div class="alltitle">行业区分比例</div>
+                    <div id="echarts4" style="height: 2.2rem; width: 100%;"></div>
+                    <div class="boxfoot"></div>
+                </div>
+            </li>
+            <li>
+                <div class="bar">
+                    <div class="barbox">
+                        <ul class="clearfix">
+                            <li class="pulll_left counter">{{count_spam_total}}</li>
+                            <li class="pulll_left counter">263</li>
+                        </ul>
+                    </div>
+                    <div class="barbox2">
+                        <ul class="clearfix">
+                            <li class="pulll_left">恶意评论数目</li>
+                            <li class="pulll_left">恶意用户数目</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="map">
+                    <div class="map1"><img src="{% static 'index/images/lbx.png' %}"></div>
+                    <div class="map2"><img src="{% static 'index/images/jt.png' %}"></div>
+                    <div class="map3"><img src="{% static 'index/images/map.png' %}"></div>
+                    <div class="map4" id="map_1"></div>
+                </div>
+            </li>
+            <li>
+                <div class="boxall" style="height:3.6rem;  text-align:center">
+                    <div class="alltitle">系统入口</div>
+                    <div class="wrap1">
+                        <br>
+                        <ul>
+                            <li>
+                                <p onclick="redirect1()">电影威胁感知</p>
+                            </li>
+                            <li>
+                                <p onclick="redirect2()">水军用户画像</p>
+                            </li>
+                            <li>
+                                <p onclick="redirect3()">水军群体画像</p>
+                            </li>
+                            <li>
+                                <p onclick="redirect4()">系统爬虫管理</p>
+                            </li>
+                            <li>
+                                <p onclick="redirect5()">用户告警设置</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div class="tabs">
+                        <ul class="clearfix">
+                            <li><a class="active" href="#">7天</a></li>
+                            <li><a href="#">15天</a></li>
+                            <li><a href="#">30天</a></li>
+                        </ul>
+                    </div> -->
+                    <!-- <div class="clearfix">
+                        <div class="sy" id="echarts6"></div>
+                        <div class="sy" id="echarts7"></div>
+                        <div class="sy" id="echarts8"></div>
+                    </div> -->
+                    <!-- <div class="addnew">
+                        <div class="tit02"><span>今日新增会员列表</span></div>
+                        <div class="adduser">
+                            <ul class="clearfix">
+                                <li class="clearfix"> <span class="pulll_left"><img src="{% static 'index/images/head.jpg' %}">1今日新增会员列表</span> <span class="pulll_right">24岁 - 女 - 广州 </span> </li>
+                                <li class="clearfix"> <span class="pulll_left"><img src="{% static 'index/images/head.jpg' %}">2今日新增会员列表</span> <span class="pulll_right">24岁 - 女 - 广州 </span> </li>
+                                <li class="clearfix"> <span class="pulll_left"><img src="{% static 'index/images/head.jpg' %}">3今日新增会员列表</span> <span class="pulll_right">24岁 - 女 - 广州 </span> </li>
+                                <li class="clearfix"> <span class="pulll_left"><img src="{% static 'index/images/head.jpg' %}">4今日新增会员列表</span> <span class="pulll_right">24岁 - 女 - 广州 </span> </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall" style="height: 5.0rem">
+                    <div class="alltitle">近期电影垃圾评论展示</div>
+                    <div class="wrap">
+                        <br>
+                        <ul>
+                            <li>
+                                <p>{{comment1}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment2}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment3}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment4}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment5}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment6}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment7}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment8}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="boxfoot"></div>
+                </div>
+            </li>
+        </ul>
+ 
+    </div>
+    <div class="back"></div>
+    <script language="JavaScript" src="{% static 'index/js/js.js' %}"></script>
+    <script type="text/javascript" src="{% static 'index/js/echarts.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'index/js/china.js' %}"></script>
+    <script type="text/javascript" src="{% static 'index/js/area_echarts.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // myChart1.resize();
+            myChart2.resize();
+            // myChart3.resize();
+            // myChart6.resize();
+            // myChart7.resize();
+            // myChart8.resize();
+        })
+        window.addEventListener("resize", function () {
+            // myChart1.resize();
+            myChart2.resize();
+            // myChart3.resize();
+            // myChart6.resize();
+            // myChart7.resize();
+            // myChart8.resize();
+        });
+    </script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart2 = echarts.init(document.getElementById('echart2'));
 
-									<div class="mb-0">
-									   <p class="mb-2"><i class="flag-icon flag-icon-cn me-1"></i> China <span class="float-end">45%</span></p>
-									   <div class="progress" style="height: 7px;">
-										   <div class="progress-bar bg-dark progress-bar-striped" role="progressbar" style="width: 45%"></div>
-										 </div>
-									</div>
+       option2 = {
+  //  backgroundColor: '#00265f',
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow'}
+    },
+    grid: {
+        left: '0%',
+		top:'10px',
+        right: '0%',
+        bottom: '4%',
+       containLabel: true
+    },
+    xAxis: [{
+        type: 'category',
+      		data: ['满江红', '流浪地球2', '熊出没', '铃芽之旅', '侧耳倾听'],
+        axisLine: {
+            show: true,
+         lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                width: 1,
+                type: "solid"
+            },
+        },
+		
+        axisTick: {
+            show: false,
+        },
+		axisLabel:  {
+                interval: 0,
+               // rotate:50,
+                show: true,
+                splitNumber: 15,
+                textStyle: {
+ 					color: "rgba(255,255,255,.6)",
+                    fontSize: '12',
+                },
+            },
+    }],
+    yAxis: [{
+        type: 'value',
+        axisLabel: {
+           //formatter: '{value} %'
+			show:true,
+			 textStyle: {
+ 					color: "rgba(255,255,255,.6)",
+                    fontSize: '12',
+                },
+        },
+        axisTick: {
+            show: false,
+        },
+        axisLine: {
+            show: true,
+            lineStyle: {
+                color: "rgba(255,255,255,.1	)",
+                width: 1,
+                type: "solid"
+            },
+        },
+        splitLine: {
+            lineStyle: {
+               color: "rgba(255,255,255,.1)",
+            }
+        }
+    }],
+    series: [
+		{
+       
+        type: 'bar',
+        data: [1500, 1200, 600, 300, 200],
+        barWidth:'35%', //柱子宽度
+       // barGap: 1, //柱子之间间距
+        itemStyle: {
+            normal: {
+                color:'#27d08a',
+                opacity: 1,
+				barBorderRadius: 5,
+            }
+        }
+    }
+		
+	]
+};
+        setTimeout(function () {
+            myChart2.setOption(option2);
+        }, 500);
 
-								  </div>
-								</div>
-							 </div>
-						   </div>
-						</div>
-			   
-						<div class="col-12 col-lg-5 col-xl-4 d-flex">
-							<div class="card w-100 radius-10">
-						     <div class="card-body">
-							  <div class="card radius-10 border shadow-none">
-								<div class="card-body">
-									<div class="d-flex align-items-center">
-										<div>
-											<p class="mb-0 text-secondary">Total Likes</p>
-											<h4 class="my-1">45.6M</h4>
-											<p class="mb-0 font-13">+6.2% from last week</p>
-										</div>
-										<div class="widgets-icons-2 bg-gradient-cosmic text-white ms-auto"><i class='bx bxs-heart-circle'></i>
-										</div>
-									</div>
-								</div>
-							 </div>
-							 <div class="card radius-10 border shadow-none">
-								<div class="card-body">
-									<div class="d-flex align-items-center">
-										<div>
-											<p class="mb-0 text-secondary">Comments</p>
-											<h4 class="my-1">25.6K</h4>
-											<p class="mb-0 font-13">+3.7% from last week</p>
-										</div>
-										<div class="widgets-icons-2 bg-gradient-ibiza text-white ms-auto"><i class='bx bxs-comment-detail'></i>
-										</div>
-									</div>
-								</div>
-							 </div>
-							 <div class="card radius-10 mb-0 border shadow-none">
-								<div class="card-body">
-									<div class="d-flex align-items-center">
-										<div>
-											<p class="mb-0 text-secondary">Total Shares</p>
-											<h4 class="my-1">85.4M</h4>
-											<p class="mb-0 font-13">+4.6% from last week</p>
-										</div>
-										<div class="widgets-icons-2 bg-gradient-moonlit text-white ms-auto"><i class='bx bxs-share-alt'></i>
-										</div>
-									</div>
-								</div>
-							  </div>
-							 </div>
+        // 使用刚指定的配置项和数据显示图表。
+        // myChart2.setOption(option);
+        // window.addEventListener("resize",function(){
+        //     myChart2.resize();
+        // });
+    </script>
+    <script type="text/javascript">
+        var v0 = 1000;
+        var v1 = 353;
+        var v2 = 178;
+        var v3 = 68;
 
-							</div>
-			   
-						</div>
-					 </div><!--end row-->
 
-					 <div class="row row-cols-1 row-cols-lg-3">
-						 <div class="col d-flex">
-                           <div class="card radius-10 w-100">
-							   <div class="card-body">
-								<p class="font-weight-bold mb-1 text-secondary">Weekly Revenue</p>
-								<div class="d-flex align-items-center mb-4">
-									<div>
-										<h4 class="mb-0">$89,540</h4>
-									</div>
-									<div class="">
-										<p class="mb-0 align-self-center font-weight-bold text-success ms-2">4.4% <i class="bx bxs-up-arrow-alt mr-2"></i>
-										</p>
-									</div>
-								</div>
-								<div class="chart-container-0">
-									<canvas id="chart3"></canvas>
-								  </div>
-							   </div>
-						   </div>
-						 </div>
-						 <div class="col d-flex">
-							<div class="card radius-10 w-100">
-								<div class="card-header bg-transparent">
-									<div class="d-flex align-items-center">
-										<div>
-											<h6 class="mb-0">Orders Summary</h6>
-										</div>
-										<div class="dropdown ms-auto">
-											<a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-											</a>
-											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="javascript:;">Action</a>
-												</li>
-												<li><a class="dropdown-item" href="javascript:;">Another action</a>
-												</li>
-												<li>
-													<hr class="dropdown-divider">
-												</li>
-												<li><a class="dropdown-item" href="javascript:;">Something else here</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container-1">
-										<canvas id="chart4"></canvas>
-									  </div>
-								</div>
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">Completed <span class="badge bg-gradient-quepal rounded-pill">25</span>
-									</li>
-									<li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">Pending <span class="badge bg-gradient-ibiza rounded-pill">10</span>
-									</li>
-									<li class="list-group-item d-flex bg-transparent justify-content-between align-items-center">Process <span class="badge bg-gradient-deepblue rounded-pill">65</span>
-									</li>
-								</ul>
-							</div>
-						  </div>
-						  <div class="col d-flex">
-							<div class="card radius-10 w-100">
-								 <div class="card-header bg-transparent">
-									<div class="d-flex align-items-center">
-										<div>
-											<h6 class="mb-0">Top Selling Categories</h6>
-										</div>
-										<div class="dropdown ms-auto">
-											<a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-											</a>
-											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="javascript:;">Action</a>
-												</li>
-												<li><a class="dropdown-item" href="javascript:;">Another action</a>
-												</li>
-												<li>
-													<hr class="dropdown-divider">
-												</li>
-												<li><a class="dropdown-item" href="javascript:;">Something else here</a>
-												</li>
-											</ul>
-										</div>
-									 </div>
-								 </div>
-								<div class="card-body">
-								   <div class="chart-container-0">
-									 <canvas id="chart5"></canvas>
-								   </div>
-								</div>
-								<div class="row row-group border-top g-0">
-									<div class="col">
-										<div class="p-3 text-center">
-											<h4 class="mb-0 text-danger">$45,216</h4>
-											<p class="mb-0">Clothing</p>
-										</div>
-									</div>
-									<div class="col">
-										<div class="p-3 text-center">
-											<h4 class="mb-0 text-success">$68,154</h4>
-											<p class="mb-0">Electronic</p>
-										</div>
-									 </div>
-								</div><!--end row-->
-							</div>
-						  </div>
-					 </div><!--end row-->
 
-			</div>
-		</div>
-		<!--end page wrapper -->
-		<!--start overlay-->
-		<div class="overlay toggle-icon"></div>
-		<!--end overlay-->
-		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
-		<!--End Back To Top Button-->
-		<footer class="page-footer">
-			<p class="mb-0">Copyright © 2023. All right reserved.</p>
-		</footer>
-	</div>
-	<!--end wrapper-->
-	<!--start switcher-->
-	<div class="switcher-wrapper">
-		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
-		</div>
-		<div class="switcher-body">
-			<div class="d-flex align-items-center">
-				<h5 class="mb-0 text-uppercase">Theme Customizer</h5>
-				<button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
-			</div>
-			<hr/>
-			<h6 class="mb-0">Theme Styles</h6>
-			<hr/>
-			<div class="d-flex align-items-center justify-content-between">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
-					<label class="form-check-label" for="lightmode">Light</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
-					<label class="form-check-label" for="darkmode">Dark</label>
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="flexRadioDefault" id="semidark">
-					<label class="form-check-label" for="semidark">Semi Dark</label>
-				</div>
-			</div>
-			<hr/>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault">
-				<label class="form-check-label" for="minimaltheme">Minimal Theme</label>
-			</div>
-			<hr/>
-			<h6 class="mb-0">Header Colors</h6>
-			<hr/>
-			<div class="header-colors-indigators">
-				<div class="row row-cols-auto g-3">
-					<div class="col">
-						<div class="indigator headercolor1" id="headercolor1"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor2" id="headercolor2"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor3" id="headercolor3"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor4" id="headercolor4"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor5" id="headercolor5"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor6" id="headercolor6"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor7" id="headercolor7"></div>
-					</div>
-					<div class="col">
-						<div class="indigator headercolor8" id="headercolor8"></div>
-					</div>
-				</div>
-			</div>
-			<hr/>
-			<h6 class="mb-0">Sidebar Colors</h6>
-			<hr/>
-			<div class="header-colors-indigators">
-				<div class="row row-cols-auto g-3">
-					<div class="col">
-						<div class="indigator sidebarcolor1" id="sidebarcolor1"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor2" id="sidebarcolor2"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor3" id="sidebarcolor3"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor4" id="sidebarcolor4"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor5" id="sidebarcolor5"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor6" id="sidebarcolor6"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor7" id="sidebarcolor7"></div>
-					</div>
-					<div class="col">
-						<div class="indigator sidebarcolor8" id="sidebarcolor8"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--end switcher-->
-	<!-- Bootstrap JS -->
-	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-	<!--plugins-->
-	<script src="{% static 'js/jquery.min.js' %}"></script>
-	<script src="{% static 'plugins/simplebar/js/simplebar.min.js' %}"></script>
-	<script src="{% static 'plugins/metismenu/js/metisMenu.min.js' %}"></script>
-	<script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
-	<script src="{% static 'plugins/vectormap/jquery-jvectormap-2.0.2.min.js' %}"></script>
-    <script src="{% static 'plugins/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
-	<script src="{% static 'plugins/chartjs/js/Chart.min.js' %}"></script>
-	<script src="{% static 'plugins/chartjs/js/Chart.extension.js' %}"></script>
-	<script src="{% static 'js/index.js' %}"></script>
-	<!--app JS-->
-	<script src="{% static 'js/app.js' %}"></script>
-<style>
-.copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
-</style>
-<div class="copyrights">
-	Collect from <a href="http://www.cssmoban.com/"  title="网站模板">模板之家</a>
-	<a href="https://www.chazidian.com/"  title="查字典">查字典</a>
-</div>
+        var myChart6 = echarts.init(document.getElementById('echarts6'));
+        option6 = {
+            series: [{
+                type: 'pie',
+                radius: ['70%', '80%'],
+                color: '#0088cc',
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: v1,
+                    name: '新增会员',
+                    label: {
+                        normal: {
+                            formatter: v1 + '',
+                            textStyle: {
+                                fontSize: 20,
+                                color: '#fff',
+                            }
+                        }
+                    }
+                },
+                       {
+                           value: v0,
+                           name: '老会员',
+                           label: {
+                               normal: {
+                                   formatter: function (params) {
+                                       return '占比' + Math.round(v1 / v0 * 100) + '%'
+                                   },
+                                   textStyle: {
+                                       color: '#aaa',
+                                       fontSize: 12
+                                   }
+                               }
+                           },
+                           itemStyle: {
+                               normal: {
+                                   color: 'rgba(255,255,255,.2)'
+                               },
+                               emphasis: {
+                                   color: '#fff'
+                               }
+                           },
+                       }]
+            }]
+
+        };
+
+        var myChart7 = echarts.init(document.getElementById('echarts7'));
+        option7 = {
+            series: [{
+                type: 'pie',
+                radius: ['70%', '80%'],
+                color: '#fccb00',
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: v2,
+                    name: '新增领卡会员',
+                    label: {
+                        normal: {
+                            formatter: v2 + '',
+                            textStyle: {
+                                fontSize: 20,
+                                color: '#fff',
+                            }
+                        }
+                    }
+                },
+                       {
+                           value: v0,
+                           name: '总领卡会员',
+                           label: {
+                               normal: {
+                                   formatter: function (params) {
+                                       return '占比' + Math.round(v2 / v0 * 100) + '%'
+                                   },
+                                   textStyle: {
+                                       color: '#aaa',
+                                       fontSize: 12
+                                   }
+                               }
+                           },
+                           itemStyle: {
+                               normal: {
+                                   color: 'rgba(255,255,255,.2)'
+                               },
+                               emphasis: {
+                                   color: '#fff'
+                               }
+                           },
+                       }]
+            }]
+        };
+
+
+        var myChart8 = echarts.init(document.getElementById('echarts8'));
+        option8 = {
+
+
+            series: [{
+
+                type: 'pie',
+                radius: ['70%', '80%'],
+                color: '#62b62f',
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: v3,
+                    name: '女消费',
+                    label: {
+                        normal: {
+                            formatter: v3 + '',
+                            textStyle: {
+                                fontSize: 20,
+                                color: '#fff',
+                            }
+                        }
+                    }
+                }, {
+                    value: v0,
+                    name: '男消费',
+                    label: {
+                        normal: {
+                            formatter: function (params) {
+                                return '占比' + Math.round(v2 / v0 * 100) + '%'
+                            },
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: 12
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgba(255,255,255,.2)'
+                        },
+                        emphasis: {
+                            color: '#fff'
+                        }
+                    },
+                }]
+            }]
+        };
+        setTimeout(function () {
+            myChart6.setOption(option6);
+            myChart7.setOption(option7);
+            myChart8.setOption(option8);
+        }, 500);
+
+    </script>
+    <!-- <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('echarts1'));
+        var v1 = 298;
+        var v2 = 523;
+        var v3 = v1 + v2;
+        option1 = {
+
+      
+            series: [{
+                type: 'pie',
+                radius: ['70%', '80%'],
+                color: '#0088cc',
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: v1,
+                    name: '平均单客价',
+                    label: {
+                        normal: {
+                            formatter: v3 + '',
+                            textStyle: {
+                                fontSize: 20,
+                                color: '#fff',
+                            }
+                        }
+                    }
+                },
+                ]
+            }]
+        };
+
+
+        var myChart3 = echarts.init(document.getElementById('echarts3'));
+        var v1 = 298 
+        var v2 = 523 
+        var v3 = v1 + v2 
+        option2 = {
+
+       
+            series: [{
+                type: 'pie',
+                radius: ['70%', '80%'],
+                color: '#fccb00',
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: v1,
+                    name: '男消费',
+                    label: {
+                        normal: {
+                            formatter: v1 + '',
+                            textStyle: {
+                                fontSize: 20,
+                                color: '#fff',
+                            }
+                        }
+                    }
+                }, {
+                    value: v2,
+                    name: '女消费',
+                    label: {
+                        normal: {
+                            formatter: function (params) {
+                                return '占比' + Math.round(v1 / v3 * 100) + '%'
+                            },
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: 12
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgba(255,255,255,.2)'
+                        },
+                        emphasis: {
+                            color: '#fff'
+                        }
+                    },
+                }]
+            }]
+        };
+
+
+        var myChart2 = echarts.init(document.getElementById('echarts2'));
+        option3 = {
+
+
+            series: [{
+
+                type: 'pie',
+                radius: ['70%', '80%'],
+                color: '#62b62f',
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: v2,
+                    name: '女消费',
+                    label: {
+                        normal: {
+                            formatter: v2 + '',
+                            textStyle: {
+                                fontSize: 20,
+                                color: '#fff',
+                            }
+                        }
+                    }
+                }, {
+                    value: v1,
+                    name: '男消费',
+                    label: {
+                        normal: {
+                            formatter: function (params) {
+                                return '占比' + Math.round(v2 / v3 * 100) + '%'
+                            },
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: 12
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgba(255,255,255,.2)'
+                        },
+                        emphasis: {
+                            color: '#fff'
+                        }
+                    },
+                }]
+            }]
+        };
+        setTimeout(function () {
+            myChart1.setOption(option1);
+            myChart2.setOption(option2);
+            myChart3.setOption(option3);
+        }, 500);
+
+    </script> -->
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('echarts4'));
+        var plantCap = [{
+            name: '工业',
+            value: '222'
+        }, {
+            name: '农业',
+            value: '115'
+        }, {
+            name: '互联网',
+            value: '113'
+        }, {
+            name: '医疗',
+            value: '95'
+        }, {
+            name: '文学',
+            value: '92'
+        }, {
+            name: '服装',
+            value: '87'
+        }];
+        var datalist = [{
+            offset: [56, 48],
+            symbolSize: 110,
+   
+            color: 'rgba(73,188,247,.14)',
+
+        }, {
+
+            offset: [30, 70],
+            symbolSize: 70,
+            color: 'rgba(73,188,247,.14)'
+        }, {
+            offset: [0, 43],
+            symbolSize: 60,
+            color: 'rgba(73,188,247,.14)'
+
+        }, {
+            offset: [93, 30],
+            symbolSize: 70,
+            color: 'rgba(73,188,247,.14)'
+        }, {
+            offset: [26, 19],
+            symbolSize: 65,
+            color: 'rgba(73,188,247,.14)'
+        }, {
+            offset: [75, 75],
+            symbolSize: 60,
+            color: 'rgba(73,188,247,.14)'
+
+        }];
+
+        var datas = [];
+        for (var i = 0; i < plantCap.length; i++) {
+            var item = plantCap[i];
+            var itemToStyle = datalist[i];
+            datas.push({
+                name: item.value + '\n' + item.name,
+                value: itemToStyle.offset,
+                symbolSize: itemToStyle.symbolSize,
+                label: {
+                    normal: {
+                        textStyle: {
+                            fontSize: 14
+                        }
+                    }
+                },
+
+                itemStyle: {
+                    normal: {
+                        color: itemToStyle.color,
+                        opacity: itemToStyle.opacity
+                    }
+                },
+            })
+        }
+        option = {
+            grid: {
+                show: false,
+                top: 10,
+                bottom: 10
+            },
+
+            xAxis: [{
+                gridIndex: 0,
+                type: 'value',
+                show: false,
+                min: 0,
+                max: 100,
+                nameLocation: 'middle',
+                nameGap: 5
+            }],
+
+            yAxis: [{
+                gridIndex: 0,
+                min: 0,
+                show: false,
+                max: 100,
+                nameLocation: 'middle',
+                nameGap: 30
+            }],
+            series: [{
+                type: 'scatter',
+                symbol: 'circle',
+                symbolSize: 120,
+                label: {
+                    normal: {
+                        show: true,
+                        formatter: '{b}',
+                        color: '#FFF',
+                        textStyle: {
+                            fontSize: '30'
+                        }
+                    },
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#F30'
+                    }
+                },
+                data: datas
+            }]
+
+        };
+        myChart.setOption(option);
+        $(document).ready(function () {
+            myChart.resize();
+
+        })
+        window.addEventListener("resize", function () {
+            myChart.resize();
+        });
+    </script>
+    <script type="text/javascript" src="{% static 'index/js/jquery.waypoints.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'index/js/jquery.countup.min.js' %}"></script>
+    <script type="text/javascript">
+        $('.counter').countUp();
+    </script>
+    <script type="text/javascript">
+        function redirect1(){
+            window.location.href="movie"
+        }
+    </script>
+
 </body>
-
 </html>

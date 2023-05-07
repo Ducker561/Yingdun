@@ -52,18 +52,18 @@
 						<div class="menu-title">大屏展示</div>
 					</a>
 					<ul>
-						<li> <a href="../"><i class="bx bx-right-arrow-alt"></i>可视化展示</a>
+						<li> <a href="/"><i class="bx bx-right-arrow-alt"></i>可视化展示</a>
 						</li>
 						
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a href="/spiders/" class="">
 						<div class="parent-icon"><i class="bx bx-bug"></i>
 						</div>
-						<div class="menu-title">爬虫管理</div>
+						<div class="menu-title">系统爬虫管理</div>
 					</a>
-					<ul>
+					<!-- <ul>
 						<li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>豆瓣爬虫</a>
 						</li>
 						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>猫眼爬虫</a>
@@ -71,7 +71,7 @@
 						<li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>社交媒体爬虫</a>
 						</li>
 					
-					</ul>
+					</ul> -->
 				</li>
 			
 				<li>
@@ -81,9 +81,9 @@
 						<div class="menu-title">电影威胁感知</div>
 					</a>
 					<ul>
-						<li> <a href="../movie/moviedetail"><i class="bx bx-right-arrow-alt"></i>电影基本概况</a>
+						<li> <a href="/movie/moviedetail/"><i class="bx bx-right-arrow-alt"></i>电影基本概况</a>
 						</li>
-						<li> <a href="../movie/"><i class="bx bx-right-arrow-alt"></i>电影威胁状态</a>
+						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>电影威胁状态</a>
 						</li>
 					
 					</ul>
@@ -142,24 +142,24 @@
 						<div class="menu-title">系统管理</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>恶意用户画像</a>
+						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>硬件实时状况</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军组织溯源</a>
+						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>软件实时状况</a>
 						</li>
 					</ul>
 				</li>
 
 				<li>
-					<a class="has-arrow" href="javascript:window.location.href='../userprofile';">
+					<a class="" href="/userprofile/">
 						<div class="parent-icon"> <i class="bx bx-happy"></i>
 						</div>
 						<div class="menu-title">个人中心</div>
 					</a>
 					<ul>
-						<li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>个人中心</a>
-						</li>
-						<li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>告警设置</a>
-						</li>
+						{% comment %} <li> <a href="/userprofile/"><i class="bx bx-right-arrow-alt"></i>个人中心</a>
+						</li> {% endcomment %}
+						{% comment %} <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>告警设置</a>
+						</li> {% endcomment %}
 					</ul>
 				</li>
 			</ul>
@@ -592,7 +592,7 @@
 										   <h6 class="mb-0">评论发布时间趋势</h6>
 									   </div>
 									   <div class="dropdown ms-auto">
-										   <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
+										   {% comment %} <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
 										   </a>
 										   <ul class="dropdown-menu">
 											   <li><a class="dropdown-item" href="javascript:;">Action</a>
@@ -604,7 +604,7 @@
 											   </li>
 											   <li><a class="dropdown-item" href="javascript:;">Something else here</a>
 											   </li>
-										   </ul>
+										   </ul> {% endcomment %}
 									   </div>
 								   </div>
 								 <div class="chart-container-0">
@@ -1085,9 +1085,139 @@
 	<!--Morris JavaScript -->
 	<script src="{% static 'plugins/raphael/raphael-min.js' %}"></script>
 	<script src="{% static 'plugins/morris/js/morris.js' %}"></script>
-	<script src="{% static 'js/index2.js' %}"></script>
+	{% comment %} <script src="{% static 'js/index2.js' %}"></script> {% endcomment %}
 	<!--app JS-->
 	<script src="{% static 'js/app.js' %}"></script>
+	<script>var comment_date_delta={{comment_date_delta|safe}}; </script>
+	<script>
+		$(function() {
+			"use strict";		
+			
+			// chart 7
+			var ctx = document.getElementById('chart7').getContext('2d');
+	
+		  var gradientStroke1 = ctx.createLinearGradient(0, 0, 0, 300);
+						  gradientStroke1.addColorStop(0, 'rgba(255, 255, 0, 0.5)');  
+						  gradientStroke1.addColorStop(1, 'rgba(233, 30, 99, 0.0)'); 
+		
+					  var gradientStroke2 = ctx.createLinearGradient(0, 0, 0, 300);
+						  gradientStroke2.addColorStop(0, '#ffff00');  
+						  gradientStroke2.addColorStop(1, '#e91e63'); 
+		
+		
+					  var gradientStroke3 = ctx.createLinearGradient(0, 0, 0, 300);
+						  gradientStroke3.addColorStop(0, 'rgba(0, 114, 255, 0.5)');  
+						  gradientStroke3.addColorStop(1, 'rgba(0, 200, 255, 0.0)'); 
+		
+					  var gradientStroke4 = ctx.createLinearGradient(0, 0, 0, 300);
+						  gradientStroke4.addColorStop(0, '#0072ff');  
+						  gradientStroke4.addColorStop(1, '#00c8ff'); 
+		
+		
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ['发布前4-6天', '发布前1-3天', '发布后0-2天', '发布后3-5天', '发布后6-8天', '发布后9-11天', '发布后12-14天'],
+			  datasets: [{
+				label: '该时段评论条数',
+				data: comment_date_delta,
+				backgroundColor: gradientStroke1,
+				borderColor: gradientStroke2,
+				pointRadius :"0",
+				pointHoverRadius:"0",
+				borderWidth: 3
+			  }, 
+			  /*{
+				label: 'Sales',
+				data: [5, 30, 16, 23, 8, 14, 11],
+				backgroundColor: gradientStroke3,
+				borderColor: gradientStroke4,
+				pointRadius :"0",
+				pointHoverRadius:"0",
+				borderWidth: 3
+			  }*/
+			  ]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: true,
+						labels: {
+							fontColor: '#585757',
+							boxWidth: 40
+						}
+					},
+					tooltips: {
+						enabled: false
+					},
+					scales: {
+						xAxes: [{
+							ticks: {
+								beginAtZero: true,
+								fontColor: '#585757'
+							},
+							gridLines: {
+								display: true,
+								color: "rgba(0, 0, 0, 0.07)"
+							},
+						}],
+						yAxes: [{
+							ticks: {
+								beginAtZero: true,
+								fontColor: '#585757'
+							},
+							gridLines: {
+								display: true,
+								color: "rgba(0, 0, 0, 0.07)"
+							},
+						}]
+					}
+				}
+			}); 		  
+			  
+		// worl map
+		
+		jQuery('#dashboard-map').vectorMap(
+		{
+			map: 'world_mill_en',
+			backgroundColor: 'transparent',
+			borderColor: '#818181',
+			borderOpacity: 0.25,
+			borderWidth: 1,
+			zoomOnScroll: false,
+			color: '#009efb',
+			regionStyle : {
+				initial : {
+				  fill : '#ff9700'
+				}
+			  },
+			markerStyle: {
+			  initial: {
+							r: 9,
+							'fill': '#fff',
+							'fill-opacity':1,
+							'stroke': '#000',
+							'stroke-width' : 5,
+							'stroke-opacity': 0.4
+						},
+						},
+			enableZoom: true,
+			hoverColor: '#009efb',
+			markers : [{
+				latLng : [21.00, 78.00],
+				name : 'Lorem Ipsum Dollar'
+			  
+			  }],
+			hoverOpacity: null,
+			normalizeFunction: 'linear',
+			scaleColors: ['#b6d6ff', '#005ace'],
+			selectedColor: '#c9dfaf',
+			selectedRegions: [],
+			showTooltip: true,
+		});	  
+		});
+ 	</script>
+
 </body>
 
 </html>

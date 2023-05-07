@@ -23,4 +23,6 @@ urlpatterns = [
     path("authentication/", include("authentication.urls")),
     path("movie/", include("movie.urls")),
     path("userprofile/", include("userprofile.urls")),
+    path("spiders/", include("spiders.urls")),
+    path("spammer/", include("spammer.urls")),
 ]

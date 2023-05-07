@@ -51,28 +51,28 @@
 						<div class="menu-title">大屏展示</div>
 					</a>
 					<ul>
-						<li> <a href="../../"><i class="bx bx-right-arrow-alt"></i>可视化展示</a>
+						<li> <a href="/"><i class="bx bx-right-arrow-alt"></i>可视化展示</a>
 						</li>
-
+						
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a href="/spiders/" class="">
 						<div class="parent-icon"><i class="bx bx-bug"></i>
 						</div>
-						<div class="menu-title">爬虫管理</div>
+						<div class="menu-title">系统爬虫管理</div>
 					</a>
-					<ul>
+					<!-- <ul>
 						<li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>豆瓣爬虫</a>
 						</li>
 						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>猫眼爬虫</a>
 						</li>
 						<li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>社交媒体爬虫</a>
 						</li>
-
-					</ul>
+					
+					</ul> -->
 				</li>
-
+			
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class='bx bx-world'></i>
@@ -80,11 +80,11 @@
 						<div class="menu-title">电影威胁感知</div>
 					</a>
 					<ul>
-						<li> <a href="../moviedetail"><i class="bx bx-right-arrow-alt"></i>电影基本概况</a>
+						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>电影基本概况</a>
 						</li>
-						<li> <a href="../"><i class="bx bx-right-arrow-alt"></i>电影威胁状态</a>
+						<li> <a href="/movie/"><i class="bx bx-right-arrow-alt"></i>电影威胁状态</a>
 						</li>
-
+					
 					</ul>
 				</li>
 
@@ -141,24 +141,24 @@
 						<div class="menu-title">系统管理</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>恶意用户画像</a>
+						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>硬件实时状况</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军组织溯源</a>
+						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>软件实时状况</a>
 						</li>
 					</ul>
 				</li>
 
 				<li>
-					<a class="has-arrow" href="javascript:window.location.href='../../userprofile';">
+					<a class="" href="/userprofile/">
 						<div class="parent-icon"> <i class="bx bx-happy"></i>
 						</div>
 						<div class="menu-title">个人中心</div>
 					</a>
 					<ul>
-						<li> <a href="icons-line-icons.html"><i class="bx bx-right-arrow-alt"></i>个人中心</a>
-						</li>
-						<li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>告警设置</a>
-						</li>
+						{% comment %} <li> <a href="/userprofile/"><i class="bx bx-right-arrow-alt"></i>个人中心</a>
+						</li> {% endcomment %}
+						{% comment %} <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>告警设置</a>
+						</li> {% endcomment %}
 					</ul>
 				</li>
 			</ul>
@@ -648,11 +648,14 @@
 								</div>
 								<p class="card-text fs-6">{{movie_intro}}</p>
 								<div>
-									<div id="emotion" style="float:left; width: 350px;height:180px;"></div>
-									<div class="chart-container-0" style="margin-left:55%; width:30%;">
-										<img src="{% static 'wordcloud_images/' %}{{wordcloud}}.png" width="350"
-											height="320">
+									<div style="float:left;">
+										<div class="card" id="emotion" style="width: 350px;height:160px;"></div>
+										<div class="card" id="geography" style="width: 350px;height:135px;"></div>
 									</div>
+									<div class="card" style="margin-left:52%; width:30%;"> <!--chart-container-0-->
+										<img src="{% static 'wordcloud_images/' %}{{wordcloud}}.png" width="350" height="320">
+									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -942,7 +945,11 @@
 	<script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
 	<!--app JS-->
 	<script src="{% static 'js/app.js' %}"></script>
-	<script>var emothon_value = {{ movie_emotion| safe }};</script>
+	<script>
+		var emothon_value = {{ movie_emotion| safe }};
+		var ip_list = {{ ip_list| safe }};
+		var ip_value = {{ ip_value| safe }};
+	</script>
 	<script type="text/javascript">
 		// 基于准备好的dom，初始化echarts实例
 		var myChart = echarts.init(document.getElementById('emotion'));
@@ -987,6 +994,123 @@
 			myChart.setOption(option, true);
 		}, 2000);
 	</script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		myChart2.resize();
+	})
+	window.addEventListener("resize", function () {
+		myChart2.resize();
+	});
+</script>
+	<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart2 = echarts.init(document.getElementById('geography'));
+
+       	option2 = {
+		//  backgroundColor: '#00265f',
+			title: {
+			text: "观影地区前十名",
+			subtext: "",
+			left: "center",
+			textStyle: {
+				color: "black", //标签文字颜色改为白色
+				fontSize: '14',
+				fontWeight:'normal'
+			},
+			},
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: { type: 'shadow'}
+			},
+			grid: {
+				left: '2%',
+				top:'10px',
+				right: '5%',
+				bottom: '4%',
+			containLabel: true
+			},
+			xAxis: [{
+				type: 'category',
+					data: ip_list,
+				axisLine: {
+					show: true,
+				lineStyle: {
+						color: "rgba(0,0,0,.6)",
+						width: 1,
+						type: "solid"
+					},
+				},
+				
+				axisTick: {
+					show: false,
+				},
+				axisLabel:  {
+						interval: 0,
+					// rotate:50,
+						show: true,
+						splitNumber: 15,
+						textStyle: {
+							color: "rgba(0,0,0,.6)",
+							fontSize: '12',
+						},
+					},
+			}],
+			yAxis: [{
+				type: 'value',
+				axisLabel: {
+				//formatter: '{value} %'
+					show:true,
+					textStyle: {
+							color: "rgba(0,0,0,.6)",
+							fontSize: '12',
+						},
+				},
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					show: true,
+					lineStyle: {
+						color: "rgba(0,0,0,.1)",
+						width: 1,
+						type: "solid"
+					},
+				},
+				splitLine: {
+					show:false,
+					lineStyle: {
+						color: "rgba(0,0,0,.1)",
+					}
+				}
+			}],
+			series: [
+				{
+				type: 'bar',
+				data: ip_value,
+				barWidth:'25%', //柱子宽度
+			// barGap: 1, //柱子之间间距
+				itemStyle: {
+					normal: {
+						color:'#27d08a',
+						opacity: 1,
+						barBorderRadius: 5,
+					}
+				}
+			}
+				
+			]
+		};
+        setTimeout(function () {
+            myChart2.setOption(option2);
+        }, 500);
+
+        // 使用刚指定的配置项和数据显示图表。
+        // myChart2.setOption(option);
+        // window.addEventListener("resize",function(){
+        //     myChart2.resize();
+        // });
+    </script>
 
 </body>
 

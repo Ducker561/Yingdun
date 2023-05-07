@@ -11,7 +11,7 @@ def index(request):
     seed(a=None)
     randomlist=[]
     for randomnum in range(8):
-        randomnum=random.randint(1,16340)
+        randomnum=random.randint(1,16000)
         randomlist.append(randomnum)
     randomlist.sort()
 

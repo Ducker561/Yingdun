@@ -5,9 +5,10 @@ from . import views
 app_name = "spammer"
 urlpatterns = [
     # ex: /spammer
-    path("", views.show_spammer, name="show_spammer"),
-    # ex: /movie/moviedetail
-    # path("moviedetail/", views.detail, name="detail"),
+    path("", views.spammer, name="spammer"),
+    # ex: /spammer/detail/
+    path("detail/<int:people_nickname>/", views.detail, name="detail"),
+    path("detail/", views.detail_redirect, name="detail_redirect"),
     # # ex: /polls/5/results/
     # path("<int:question_id>/results/", views.results, name="results"),
     # # ex: /polls/5/vote/

@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" />
+	<link rel="icon" href="{% static 'images/logo-SVG.png' %}" type="image/png" />
 	<!--plugins-->
 	<link href="{% static 'plugins/vectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet"/>
 	<link href="{% static 'plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
@@ -16,6 +16,8 @@
 	<!-- loader-->
 	<link href="{% static 'css/pace.min.css' %}" rel="stylesheet" />
 	<script src="{% static 'js/pace.min.js' %}"></script>
+	<link href="{% static 'css/nice-select.css' %}" rel="stylesheet">
+	<link href="{% static 'css/jquery.dataTables.min.css' %}" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -25,7 +27,7 @@
 	<link rel="stylesheet" href="{% static 'css/dark-theme.cs' %}s" />
 	<link rel="stylesheet" href="{% static 'css/semi-dark.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/header-colors.css' %}" />
-	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+	<title>影盾 - 守护佳影 盾卫真实</title>
 </head>
 
 <body>
@@ -35,7 +37,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="{% static 'images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
+					<img src="{% static 'images/logo-SVG.png' %}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
 					<h4 class="logo-text">影  盾</h4>
@@ -46,16 +48,11 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a href="/" class="">
 						<div class="parent-icon"><i class='bx bx-line-chart'></i>
 						</div>
 						<div class="menu-title">大屏展示</div>
 					</a>
-					<ul>
-						<li> <a href="/"><i class="bx bx-right-arrow-alt"></i>可视化展示</a>
-						</li>
-						
-					</ul>
 				</li>
 				<li>
 					<a href="/spiders/" class="">
@@ -63,15 +60,6 @@
 						</div>
 						<div class="menu-title">系统爬虫管理</div>
 					</a>
-					<!-- <ul>
-						<li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>豆瓣爬虫</a>
-						</li>
-						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>猫眼爬虫</a>
-						</li>
-						<li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>社交媒体爬虫</a>
-						</li>
-					
-					</ul> -->
 				</li>
 			
 				<li>
@@ -83,7 +71,7 @@
 					<ul>
 						<li> <a href="/movie/moviedetail/"><i class="bx bx-right-arrow-alt"></i>电影基本概况</a>
 						</li>
-						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>电影威胁状态</a>
+						<li> <a href="/movie/"><i class="bx bx-right-arrow-alt"></i>电影威胁状态</a>
 						</li>
 					
 					</ul>
@@ -96,9 +84,9 @@
 						<div class="menu-title">水军用户画像</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>水军用户列表</a>
+						<li> <a href="/spammer/"><i class="bx bx-right-arrow-alt"></i>水军用户列表</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
+						<li> <a href="/spammer/detail/"><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
 						</li>
 					</ul>
 				</li>
@@ -110,29 +98,23 @@
 						<div class="menu-title">水军群体画像</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>水军群体列表</a>
+						<li> <a href="/colony/"><i class="bx bx-right-arrow-alt"></i>水军群体列表</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体行为分析</a>
+						<li> <a href="/colony/detail/"><i class="bx bx-right-arrow-alt"></i>群体行为分析</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体言论分析</a>
+						<li> <a href="/colony/comments/"><i class="bx bx-right-arrow-alt"></i>群体言论分析</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体关系分析</a>
+						<li> <a href="/colony/ralation/"><i class="bx bx-right-arrow-alt"></i>群体关系分析</a>
 						</li>
 					</ul>
 				</li>
 
 				<li>
-					<a class="has-arrow" href="javascript:;">
+					<a href="/alarm/" class="">
 						<div class="parent-icon"><i class="bx bx-bell"></i>
 						</div>
 						<div class="menu-title">告警管理</div>
 					</a>
-					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>恶意用户画像</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军组织溯源</a>
-						</li>
-					</ul>
 				</li>
 
 				<li>
@@ -142,9 +124,9 @@
 						<div class="menu-title">系统管理</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>硬件实时状况</a>
+						<li> <a href="/system/hardware/"><i class="bx bx-right-arrow-alt"></i>硬件实时状况</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>软件实时状况</a>
+						<li> <a href="/system/software/"><i class="bx bx-right-arrow-alt"></i>软件实时状况</a>
 						</li>
 					</ul>
 				</li>
@@ -155,12 +137,6 @@
 						</div>
 						<div class="menu-title">个人中心</div>
 					</a>
-					<ul>
-						{% comment %} <li> <a href="/userprofile/"><i class="bx bx-right-arrow-alt"></i>个人中心</a>
-						</li> {% endcomment %}
-						{% comment %} <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>告警设置</a>
-						</li> {% endcomment %}
-					</ul>
 				</li>
 			</ul>
 			<!--end navigation-->
@@ -584,7 +560,7 @@
 					</div>
 				</div> -->
 					<div class="row">
-						<div class="col-12 col-lg-8">
+						<div class="col-12 col-lg-7">
                             <div class="card radius-10">
 								<div class="card-body">
 								   <div class="d-flex align-items-center">
@@ -613,32 +589,71 @@
 								</div>
 							 </div>
 						</div>
-						<div class="col-12 col-lg-4">
+						<div class="col-12 col-lg-5">
                             <div class="card radius-10">
 								<div class="card-body">
 									<div class="d-flex align-items-center">
 										<div>
-											<h6 class="mb-0">词云</h6>
-										</div>
-										<div class="dropdown ms-auto">
-											<a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
-											</a>
-											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="javascript:;">Action</a>
-												</li>
-												<li><a class="dropdown-item" href="javascript:;">Another action</a>
-												</li>
-												<li>
-													<hr class="dropdown-divider">
-												</li>
-												<li><a class="dropdown-item" href="javascript:;">Something else here</a>
-												</li>
-											</ul>
+											<h6 class="mb-2">相关数据</h6>
 										</div>
 									</div>
-									<div class="chart-container-0">
-										<!-- <canvas id="chart-order-status"></canvas> -->
-										<img src="{% static 'wordcloud_images/' %}{{wordcloud}}.png" width="350" height="320">
+									<div class="row">
+										<div class="col-md-6 mt-1">
+											<div class="progress default-progress">
+												<div class="progress-bar bg-green progress-animated" style="width: 42.03%; height:16px;" role="progressbar">
+													{% comment %} <span class="sr-only">90% Complete</span> {% endcomment %}
+												</div>
+											</div>
+											<div class="d-flex align-items-end mt-2 pb-3 justify-content-between">
+												<span class="fs-14 font-w500">活跃用户评论</span>
+												<span class="fs-16"><span class="text-black pe-2"></span>42.03%</span>
+											</div>
+											<div class="progress default-progress">
+												<div class="progress-bar bg-info progress-animated" style="width: {{movie_emotion}}%; height:16px;" role="progressbar">
+													{% comment %} <span class="sr-only">85% Complete</span> {% endcomment %}
+												</div>
+											</div>
+											<div class="d-flex align-items-end mt-2 pb-3 justify-content-between">
+												<span class="fs-14 font-w500">评论情感值得分</span>
+												<span class="fs-16"><span class="text-black pe-2"></span>{{movie_emotion}}%</span>
+											</div>
+											<div class="progress default-progress">
+												<div class="progress-bar bg-danger progress-animated" style="width: {{count_extreme}}%; height:16px;" role="progressbar">
+													{% comment %} <span class="sr-only">45% Complete</span> {% endcomment %}
+												</div>
+											</div>
+											<div class="d-flex align-items-end mt-2 pb-3 justify-content-between">
+												<span class="fs-14 font-w500">极端评分评论</span>
+												<span class="fs-16"><span class="text-black pe-2"></span>{{count_extreme}}%</span>
+											</div>
+											<div class="progress default-progress">
+												<div class="progress-bar bg-success progress-animated" style="width: {{rate}}%; height:16px;" role="progressbar">
+													{% comment %} <span class="sr-only">45% Complete</span> {% endcomment %}
+												</div>
+											</div>
+											<div class="d-flex align-items-end mt-2 pb-3 justify-content-between">
+												<span class="fs-14 font-w500">恶意评论占比</span>
+												<span class="fs-16"><span class="text-black pe-2"></span>{{rate}}%</span>
+											</div>
+											<div class="progress default-progress">
+												<div class="progress-bar bg-warning progress-animated" style="width: 12.32%; height:16px;" role="progressbar">
+													{% comment %} <span class="sr-only">45% Complete</span> {% endcomment %}
+												</div>
+											</div>
+											<div class="d-flex align-items-end mt-2 justify-content-between">
+												<span class="fs-14 font-w500">水军用户占比</span>
+												<span class="fs-16"><span class="text-black pe-2"></span>12.32%</span>
+											</div>
+											
+										</div>
+										
+										<div class="col-md-6">
+											<div class="chart-container-0">
+												<!-- <canvas id="chart-order-status"></canvas> -->
+												{% comment %} <img src="{% static 'wordcloud_images/' %}{{wordcloud}}.png" width="350" height="320"> {% endcomment %}
+												<img src="{{movie_pic}}" class="img-fluid">
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -726,7 +741,7 @@
 
 
 				  <div class="row">
-					<div class="col-12 col-lg-8 col-xl-8">
+					{% comment %} <div class="col-12 col-lg-8 col-xl-8">
 					  <div class="card radius-10">
 						<div class="card-header bg-transparent">
 							<div class="d-flex align-items-center">
@@ -789,9 +804,9 @@
 								</div>
 						 </div>
 					   </div>
-					</div>
+					</div> {% endcomment %}
 		   
-					<div class="col-12 col-lg-4 col-xl-4">
+					{% comment %} <div class="col-12 col-lg-4 col-xl-4">
 						<div class="card radius-10">
 							<div class="card-header bg-transparent">
 								<div class="d-flex align-items-center">
@@ -847,7 +862,7 @@
 						</div>
 						<div class="mt-1" id="chart10"></div>
 					  </div>
-					</div>
+					</div> {% endcomment %}
 				 </div><!--End Row-->
 				 
 				 
@@ -855,7 +870,7 @@
 					<div class="card-body">
 					   <div class="d-flex align-items-center">
 						   <div>
-							   <h6 class="mb-0">Recent Orders</h6>
+							   <h6 class="mb-0"><strong>近期恶意评论展示</strong></h6>
 						   </div>
 						   <div class="dropdown ms-auto">
 							   <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded font-22 text-option"></i>
@@ -873,91 +888,47 @@
 							   </ul>
 						   </div>
 					   </div>
-					<div class="table-responsive">
-					  <table class="table align-middle mb-0">
-					   <thead class="table-light">
-						<tr>
-						  <th>Product</th>
-						  <th>Photo</th>
-						  <th>Product ID</th>
-						  <th>Status</th>
-						  <th>Amount</th>
-						  <th>Date</th>
-						  <th>Shipping</th>
-						</tr>
-						</thead>
-						<tbody><tr>
-						 <td>Iphone 5</td>
-						 <td><img src="{% static 'images/products/01.png' %}" class="product-img-2" alt="product img"></td>
-						 <td>#9405822</td>
-						 <td><span class="badge bg-gradient-quepal text-white shadow-sm w-100">Paid</span></td>
-						 <td>$1250.00</td>
-						 <td>03 Feb 2020</td>
-						 <td><div class="progress" style="height: 6px;">
-							   <div class="progress-bar bg-gradient-quepal" role="progressbar" style="width: 100%"></div>
-							 </div></td>
-						</tr>
-	 
-						<tr>
-						 <td>Earphone GL</td>
-						 <td><img src="{% static 'images/products/02.png' %}" class="product-img-2" alt="product img"></td>
-						 <td>#8304620</td>
-						 <td><span class="badge bg-gradient-blooker text-white shadow-sm w-100">Pending</span></td>
-						 <td>$1500.00</td>
-						 <td>05 Feb 2020</td>
-						 <td><div class="progress" style="height: 6px;">
-							   <div class="progress-bar bg-gradient-blooker" role="progressbar" style="width: 60%"></div>
-							 </div></td>
-						</tr>
-	 
-						<tr>
-						 <td>HD Hand Camera</td>
-						 <td><img src="{% static 'images/products/03.png' %}" class="product-img-2" alt="product img"></td>
-						 <td>#4736890</td>
-						 <td><span class="badge bg-gradient-bloody text-white shadow-sm w-100">Failed</span></td>
-						 <td>$1400.00</td>
-						 <td>06 Feb 2020</td>
-						 <td><div class="progress" style="height: 6px;">
-							   <div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 70%"></div>
-							 </div></td>
-						</tr>
-	 
-						<tr>
-						 <td>Clasic Shoes</td>
-						 <td><img src="{% static 'images/products/04.png' %}" class="product-img-2" alt="product img"></td>
-						 <td>#8543765</td>
-						 <td><span class="badge bg-gradient-quepal text-white shadow-sm w-100">Paid</span></td>
-						 <td>$1200.00</td>
-						 <td>14 Feb 2020</td>
-						 <td><div class="progress" style="height: 6px;">
-							   <div class="progress-bar bg-gradient-quepal" role="progressbar" style="width: 100%"></div>
-							 </div></td>
-						</tr>
-						<tr>
-						 <td>Sitting Chair</td>
-						 <td><img src="{% static 'images/products/06.png' %}" class="product-img-2" alt="product img"></td>
-						 <td>#9629240</td>
-						 <td><span class="badge bg-gradient-blooker text-white shadow-sm w-100">Pending</span></td>
-						 <td>$1500.00</td>
-						 <td>18 Feb 2020</td>
-						 <td><div class="progress" style="height: 6px;">
-							   <div class="progress-bar bg-gradient-blooker" role="progressbar" style="width: 60%"></div>
-							 </div></td>
-						</tr>
-						<tr>
-						 <td>Hand Watch</td>
-						 <td><img src="{% static 'images/products/05.png' %}" class="product-img-2" alt="product img"></td>
-						 <td>#8506790</td>
-						 <td><span class="badge bg-gradient-bloody text-white shadow-sm w-100">Failed</span></td>
-						 <td>$1800.00</td>
-						 <td>21 Feb 2020</td>
-						 <td><div class="progress" style="height: 6px;">
-							   <div class="progress-bar bg-gradient-bloody" role="progressbar" style="width: 40%"></div>
-							 </div></td>
-						</tr>
-					   </tbody>
-					 </table>
-					 </div>
+					   <div class="table-responsive">
+						<table id="example" class="display" style="min-width: 845px" >
+							<thead>
+								<tr>
+									<th style="width:80px;"><strong>编号</strong></th>
+									<th><strong>用户昵称</strong></th>
+									<th><strong>评论时间</strong></th>
+									<th><strong>电影评分</strong></th>
+									<th><strong>点赞数</strong></th>
+									<th><strong>评论内容</strong></th>
+									{% comment %} <th><strong>STATUS</strong></th>
+									<th><strong>PRICE</strong></th>
+									<th></th> {% endcomment %}
+								</tr>
+							</thead>
+							<tbody>
+								{% block content %}
+								{% for spam in spam_list %}
+								<tr>
+									<td>{{spam.comment_no}}</td>
+									<td>{{spam.comment_nickname}}</td>
+									<td>{{spam.comment_time}}</td>
+									<td>{{spam.comment_rating}}</td>
+									<td>{{spam.comment_vote}}</td>
+									<td style="white-space: pre-wrap; word-wrap: break-word;">{{spam.comment_content}}</td>
+								</tr>
+								{% endfor %}
+								{% endblock %}
+							</tbody>
+							<tfoot>
+								<tr>
+									<th style="width:80px;"><strong>编号</strong></th>
+									<th><strong>用户昵称</strong></th>
+									<th><strong>评论时间</strong></th>
+									<th><strong>电影评分</strong></th>
+									<th><strong>点赞数</strong></th>
+									<th><strong>评论内容</strong></th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
 					</div>
 			   </div>
 
@@ -1082,6 +1053,9 @@
 	<script src="{% static 'plugins/chartjs/js/Chart.min.js' %}"></script>
 	<script src="{% static 'plugins/chartjs/js/Chart.extension.js' %}"></script>
 	<script src="{% static 'plugins/sparkline-charts/jquery.sparkline.min.js' %}"></script>
+	<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/datatables.init.js' %}"></script>
+	<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
 	<!--Morris JavaScript -->
 	<script src="{% static 'plugins/raphael/raphael-min.js' %}"></script>
 	<script src="{% static 'plugins/morris/js/morris.js' %}"></script>

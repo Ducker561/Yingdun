@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     "userprofile.apps.UserprofileConfig",
     "spiders.apps.SpidersConfig",
     "spammer.apps.SpammerConfig",
+    "system.apps.SystemConfig",
+    "alarm.apps.AlarmConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

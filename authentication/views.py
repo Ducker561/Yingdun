@@ -47,5 +47,6 @@ def register_user(request):
     user.user_name = username
     user.user_email = useremail
     user.user_pwd = userpwd
+    user.user_role = 1
     user.save()
     return JsonResponse({'res':user.user_id})

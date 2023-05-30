@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="{% static 'images/favicon-32x32.png' %}" type="image/png" />
+	<link rel="icon" href="{% static 'images/logo-SVG.png' %}" type="image/png" />
 	<!--plugins-->
 	<link href="{% static 'plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
 	<link href="{% static 'plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="{% static 'css/dark-theme.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/semi-dark.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/header-colors.css' %}" />
-	<title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+	<title>影盾 - 守护佳影 盾卫真实</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header">
 				<div>
-					<img src="{% static 'images/logo-icon.png' %}" class="logo-icon" alt="logo icon">
+					<img src="{% static 'images/logo-SVG.png' %}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
 					<h4 class="logo-text">影  盾</h4>
@@ -45,16 +45,11 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
 				<li>
-					<a href="javascript:;" class="has-arrow">
+					<a href="/" class="">
 						<div class="parent-icon"><i class='bx bx-line-chart'></i>
 						</div>
 						<div class="menu-title">大屏展示</div>
 					</a>
-					<ul>
-						<li> <a href="/"><i class="bx bx-right-arrow-alt"></i>可视化展示</a>
-						</li>
-						
-					</ul>
 				</li>
 				<li>
 					<a href="/spiders/" class="">
@@ -62,15 +57,6 @@
 						</div>
 						<div class="menu-title">系统爬虫管理</div>
 					</a>
-					<!-- <ul>
-						<li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>豆瓣爬虫</a>
-						</li>
-						<li> <a href="app-chat-box.html"><i class="bx bx-right-arrow-alt"></i>猫眼爬虫</a>
-						</li>
-						<li> <a href="app-file-manager.html"><i class="bx bx-right-arrow-alt"></i>社交媒体爬虫</a>
-						</li>
-					
-					</ul> -->
 				</li>
 			
 				<li>
@@ -95,9 +81,9 @@
 						<div class="menu-title">水军用户画像</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>水军用户列表</a>
+						<li> <a href="/spammer/"><i class="bx bx-right-arrow-alt"></i>水军用户列表</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
+						<li> <a href="/spammer/detail/"><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
 						</li>
 					</ul>
 				</li>
@@ -109,29 +95,23 @@
 						<div class="menu-title">水军群体画像</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>水军群体列表</a>
+						<li> <a href="/colony/"><i class="bx bx-right-arrow-alt"></i>水军群体列表</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体行为分析</a>
+						<li> <a href="/colony/detail/"><i class="bx bx-right-arrow-alt"></i>群体行为分析</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体言论分析</a>
+						<li> <a href="/colony/comments/"><i class="bx bx-right-arrow-alt"></i>群体言论分析</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>群体关系分析</a>
+						<li> <a href="/colony/ralation/"><i class="bx bx-right-arrow-alt"></i>群体关系分析</a>
 						</li>
 					</ul>
 				</li>
 
 				<li>
-					<a class="has-arrow" href="javascript:;">
+					<a href="/alarm/" class="">
 						<div class="parent-icon"><i class="bx bx-bell"></i>
 						</div>
 						<div class="menu-title">告警管理</div>
 					</a>
-					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>恶意用户画像</a>
-						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>水军组织溯源</a>
-						</li>
-					</ul>
 				</li>
 
 				<li>
@@ -141,25 +121,19 @@
 						<div class="menu-title">系统管理</div>
 					</a>
 					<ul>
-						<li> <a href="content-grid-system.html"><i class="bx bx-right-arrow-alt"></i>硬件实时状况</a>
+						<li> <a href="/system/hardware/"><i class="bx bx-right-arrow-alt"></i>硬件实时状况</a>
 						</li>
-						<li> <a href="content-typography.html"><i class="bx bx-right-arrow-alt"></i>软件实时状况</a>
+						<li> <a href="/system/software/"><i class="bx bx-right-arrow-alt"></i>软件实时状况</a>
 						</li>
 					</ul>
 				</li>
 
 				<li>
-					<a class="" href="">
+					<a class="" href="/userprofile/">
 						<div class="parent-icon"> <i class="bx bx-happy"></i>
 						</div>
 						<div class="menu-title">个人中心</div>
 					</a>
-					<ul>
-						{% comment %} <li> <a href="/userprofile/"><i class="bx bx-right-arrow-alt"></i>个人中心</a>
-						</li> {% endcomment %}
-						{% comment %} <li> <a href="icons-boxicons.html"><i class="bx bx-right-arrow-alt"></i>告警设置</a>
-						</li> {% endcomment %}
-					</ul>
 				</li>
 			</ul>
 			<!--end navigation-->

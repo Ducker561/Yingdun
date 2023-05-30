@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>影盾 - 大数据展示平台</title>
+    <link rel="icon" href="{% static 'images/logo-SVG.png' %}" type="image/png" />
     <script type="text/javascript" src="{% static 'index/js/jquery.js' %}"></script>
     <link rel="stylesheet" href="{% static 'index/css/comon0.css' %}">
 </head>
@@ -49,7 +50,7 @@
         <div class="loadbox"> <img src="{% static 'index/images/loading.gif' %}"> 页面加载中... </div>
     </div>
     <div class="head">
-        <h1><img src="{% static 'index/images/logo.png' %}">影盾大数据展示平台</h1>
+        <h1>影盾大数据展示平台</h1><!--<img src="{% static 'images/logo-SVG.png' %}" width="50%">-->
         <div class="weather"><!--<img src="{% static 'index/images/weather.png' %}"><span>多云转小雨</span>--><span id="showTime"></span></div>
     </div>
     <script>
@@ -180,8 +181,8 @@
                     </div> -->
                     <div class="boxfoot"></div>
                 </div>
-                <div class="boxall" style="height: 5.0rem">
-                    <div class="alltitle">近期电影垃圾评论展示</div>
+                <div class="boxall" style="height: 15.0rem">
+                    {% comment %} <div class="alltitle">近期电影垃圾评论展示</div> {% endcomment %}
                     <div class="wrap">
                         <br>
                         <ul>
@@ -794,12 +795,17 @@
     </script>
     <script type="text/javascript">
         function redirect1(){
-            window.location.href="movie"
+            window.location.href="/movie/moviedetail/"
+        }
+    </script>
+    <script type="text/javascript">
+        function redirect2(){
+            window.location.href="/spammer/"
         }
     </script>
     <script type="text/javascript">
         function redirect4(){
-            window.location.href="spiders"
+            window.location.href="/spiders/"
         }
     </script>
 

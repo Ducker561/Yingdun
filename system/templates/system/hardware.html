@@ -1,0 +1,771 @@
+{%load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--favicon-->
+	<link rel="icon" href="{% static 'images/logo-SVG.png' %}" type="image/png" />
+	<!--plugins-->
+	<link href="{% static 'plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
+	<link href="{% static 'plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
+	<link href="{% static 'plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
+	<!-- loader-->
+	<link href="{% static 'css/pace.min.css' %}" rel="stylesheet" />
+	<script src="{% static 'js/pace.min.js' %}"></script>
+	<!-- Bootstrap CSS -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link href="{% static 'css/app.css' %}" rel="stylesheet">
+	<link href="{% static 'css/icons.css' %}" rel="stylesheet">
+	<!-- Theme Style CSS -->
+	<link rel="stylesheet" href="{% static 'css/dark-theme.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/semi-dark.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/header-colors.css' %}" />
+	<title>影盾 - 守护佳影 盾卫真实</title>
+</head>
+
+<body>
+	<!--wrapper-->
+	<div class="wrapper">
+		<!--sidebar wrapper -->
+		<div class="sidebar-wrapper" data-simplebar="true">
+			<div class="sidebar-header">
+				<div>
+					<img src="{% static 'images/logo-SVG.png' %}" class="logo-icon" alt="logo icon">
+				</div>
+				<div>
+					<h4 class="logo-text">影  盾</h4>
+				</div>
+				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+				</div>
+			</div>
+			<!--navigation-->
+			<ul class="metismenu" id="menu">
+				<li>
+					<a href="/" class="">
+						<div class="parent-icon"><i class='bx bx-line-chart'></i>
+						</div>
+						<div class="menu-title">大屏展示</div>
+					</a>
+				</li>
+				<li>
+					<a href="/spiders/" class="">
+						<div class="parent-icon"><i class="bx bx-bug"></i>
+						</div>
+						<div class="menu-title">系统爬虫管理</div>
+					</a>
+				</li>
+			
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-world'></i>
+						</div>
+						<div class="menu-title">电影威胁感知</div>
+					</a>
+					<ul>
+						<li> <a href="/movie/moviedetail/"><i class="bx bx-right-arrow-alt"></i>电影基本概况</a>
+						</li>
+						<li> <a href="/movie/"><i class="bx bx-right-arrow-alt"></i>电影威胁状态</a>
+						</li>
+					
+					</ul>
+				</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="bx bx-user-pin"></i>
+						</div>
+						<div class="menu-title">水军用户画像</div>
+					</a>
+					<ul>
+						<li> <a href="/spammer/"><i class="bx bx-right-arrow-alt"></i>水军用户列表</a>
+						</li>
+						<li> <a href="/spammer/detail/"><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="bx bx-atom"></i>
+						</div>
+						<div class="menu-title">水军群体画像</div>
+					</a>
+					<ul>
+						<li> <a href="/colony/"><i class="bx bx-right-arrow-alt"></i>水军群体列表</a>
+						</li>
+						<li> <a href="/colony/detail/"><i class="bx bx-right-arrow-alt"></i>群体行为分析</a>
+						</li>
+						<li> <a href="/colony/comments/"><i class="bx bx-right-arrow-alt"></i>群体言论分析</a>
+						</li>
+						<li> <a href="/colony/ralation/"><i class="bx bx-right-arrow-alt"></i>群体关系分析</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="/alarm/" class="">
+						<div class="parent-icon"><i class="bx bx-bell"></i>
+						</div>
+						<div class="menu-title">告警管理</div>
+					</a>
+				</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="bx bx-shield"></i>
+						</div>
+						<div class="menu-title">系统管理</div>
+					</a>
+					<ul>
+						<li> <a href="/system/hardware/"><i class="bx bx-right-arrow-alt"></i>硬件实时状况</a>
+						</li>
+						<li> <a href="/system/software/"><i class="bx bx-right-arrow-alt"></i>软件实时状况</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a class="" href="/userprofile/">
+						<div class="parent-icon"> <i class="bx bx-happy"></i>
+						</div>
+						<div class="menu-title">个人中心</div>
+					</a>
+				</li>
+			</ul>
+			<!--end navigation-->
+		</div>
+		<!--end sidebar wrapper -->
+		<!--start header -->
+		<header>
+			<div class="topbar d-flex align-items-center">
+				<nav class="navbar navbar-expand">
+					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+					</div>
+					<div class="search-bar flex-grow-1">
+						<div class="position-relative search-bar-box">
+							<input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
+							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
+						</div>
+					</div>
+					<div class="top-menu ms-auto">
+						<ul class="navbar-nav align-items-center">
+							<li class="nav-item mobile-search-icon">
+								<a class="nav-link" href="#">	<i class='bx bx-search'></i>
+								</a>
+							</li>
+							<li class="nav-item dropdown dropdown-large">
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<div class="row row-cols-3 g-3 p-3">
+										<div class="col text-center">
+											<div class="app-box mx-auto bg-gradient-cosmic text-white"><i class='bx bx-group'></i>
+											</div>
+											<div class="app-title">Teams</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto bg-gradient-burning text-white"><i class='bx bx-atom'></i>
+											</div>
+											<div class="app-title">Projects</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto bg-gradient-lush text-white"><i class='bx bx-shield'></i>
+											</div>
+											<div class="app-title">Tasks</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto bg-gradient-kyoto text-dark"><i class='bx bx-notification'></i>
+											</div>
+											<div class="app-title">Feeds</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto bg-gradient-blues text-dark"><i class='bx bx-file'></i>
+											</div>
+											<div class="app-title">Files</div>
+										</div>
+										<div class="col text-center">
+											<div class="app-box mx-auto bg-gradient-moonlit text-white"><i class='bx bx-filter-alt'></i>
+											</div>
+											<div class="app-title">Alerts</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item dropdown dropdown-large">
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">7</span>
+									<i class='bx bx-bell'></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<a href="javascript:;">
+										<div class="msg-header">
+											<p class="msg-header-title">Notifications</p>
+											<p class="msg-header-clear ms-auto">Marks all as read</p>
+										</div>
+									</a>
+									<div class="header-notifications-list">
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-primary text-primary"><i class="bx bx-group"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Customers<span class="msg-time float-end">14 Sec
+												ago</span></h6>
+													<p class="msg-info">5 new user registered</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-danger text-danger"><i class="bx bx-cart-alt"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
+												ago</span></h6>
+													<p class="msg-info">You have recived new orders</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-success text-success"><i class="bx bx-file"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">24 PDF File<span class="msg-time float-end">19 min
+												ago</span></h6>
+													<p class="msg-info">The pdf files generated</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-warning text-warning"><i class="bx bx-send"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Time Response <span class="msg-time float-end">28 min
+												ago</span></h6>
+													<p class="msg-info">5.1 min avarage time response</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-info text-info"><i class="bx bx-home-circle"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Product Approved <span
+												class="msg-time float-end">2 hrs ago</span></h6>
+													<p class="msg-info">Your new product has approved</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-danger text-danger"><i class="bx bx-message-detail"></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New Comments <span class="msg-time float-end">4 hrs
+												ago</span></h6>
+													<p class="msg-info">New customer comments recived</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-success text-success"><i class='bx bx-check-square'></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Your item is shipped <span class="msg-time float-end">5 hrs
+												ago</span></h6>
+													<p class="msg-info">Successfully shipped your item</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-primary text-primary"><i class='bx bx-user-pin'></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">New 24 authors<span class="msg-time float-end">1 day
+												ago</span></h6>
+													<p class="msg-info">24 new authors joined last week</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="notify bg-light-warning text-warning"><i class='bx bx-door-open'></i>
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Defense Alerts <span class="msg-time float-end">2 weeks
+												ago</span></h6>
+													<p class="msg-info">45% less alerts last 4 weeks</p>
+												</div>
+											</div>
+										</a>
+									</div>
+									<a href="javascript:;">
+										<div class="text-center msg-footer">View All Notifications</div>
+									</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown dropdown-large">
+								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
+									<i class='bx bx-comment'></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<a href="javascript:;">
+										<div class="msg-header">
+											<p class="msg-header-title">Messages</p>
+											<p class="msg-header-clear ms-auto">Marks all as read</p>
+										</div>
+									</a>
+									<div class="header-message-list">
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-1.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
+												ago</span></h6>
+													<p class="msg-info">The standard chunk of lorem</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-2.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
+												sec ago</span></h6>
+													<p class="msg-info">Many desktop publishing packages</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-3.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
+												ago</span></h6>
+													<p class="msg-info">Various versions have evolved over</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-4.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
+												min ago</span></h6>
+													<p class="msg-info">Making this the first true generator</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-5.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
+												ago</span></h6>
+													<p class="msg-info">Duis aute irure dolor in reprehenderit</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-6.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
+												ago</span></h6>
+													<p class="msg-info">The passage is attributed to an unknown</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-7.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
+												ago</span></h6>
+													<p class="msg-info">The point of using Lorem</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-8.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
+												ago</span></h6>
+													<p class="msg-info">It was popularised in the 1960s</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-9.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
+												ago</span></h6>
+													<p class="msg-info">Various versions have evolved over</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-10.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2 days
+												ago</span></h6>
+													<p class="msg-info">If you are going to use a passage</p>
+												</div>
+											</div>
+										</a>
+										<a class="dropdown-item" href="javascript:;">
+											<div class="d-flex align-items-center">
+												<div class="user-online">
+													<img src="{% static 'images/avatars/avatar-11.png' %}" class="msg-avatar" alt="user avatar">
+												</div>
+												<div class="flex-grow-1">
+													<h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
+												ago</span></h6>
+													<p class="msg-info">All the Lorem Ipsum generators</p>
+												</div>
+											</div>
+										</a>
+									</div>
+									<a href="javascript:;">
+										<div class="text-center msg-footer">View All Messages</div>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="user-box dropdown">
+						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img src="{% static 'images/avatars/avatar-2.png' %}" class="user-img" alt="user avatar">
+							<div class="user-info ps-3">
+								<p class="user-name mb-0">Pauline Seitz</p>
+								<p class="designattion mb-0">Web Designer</p>
+							</div>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
+							</li>
+							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
+							</li>
+							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
+							</li>
+							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
+							</li>
+							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>Downloads</span></a>
+							</li>
+							<li>
+								<div class="dropdown-divider mb-0"></div>
+							</li>
+							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!--end header -->
+		<!--start page wrapper -->
+		<div class="page-wrapper">
+			<div class="page-content">
+				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3">系统管理</div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								</li>
+								<li class="breadcrumb-item active" aria-current="page">硬件实时状况</li>
+							</ol>
+						</nav>
+					</div>
+					<div class="ms-auto">
+						<div class="btn-group">
+							<!-- <button type="button" class="btn btn-primary">Settings</button>
+							<button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
+								<a class="dropdown-item" href="javascript:;">Another action</a>
+								<a class="dropdown-item" href="javascript:;">Something else here</a>
+								<div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
+							</div> -->
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="card radius-10">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-5">
+										<svg t="1683508971780" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2493" width="150" height="150"><path d="M794.392 187.692H243.708c-31.064 0-56.48 25.417-56.48 56.48v550.685c0 31.064 25.416 56.48 56.48 56.48h550.685c31.064 0 56.48-25.417 56.48-56.48V244.172c0-31.063-25.416-56.48-56.481-56.48z m-56.48 465.964c0 46.718-38.003 84.721-84.721 84.721H384.909c-46.718 0-84.721-38.003-84.721-84.721V385.374c0-46.718 38.003-84.721 84.721-84.721h268.282c46.718 0 84.721 38.003 84.721 84.721v268.282z" p-id="2494"></path><path d="M653.191 357.133H384.909c-15.575 0-28.24 12.672-28.24 28.24v268.282c0 15.568 12.665 28.24 28.24 28.24h268.282c15.575 0 28.24-12.672 28.24-28.24V385.374c0-15.568-12.665-28.241-28.24-28.241zM372.431 95.09c0-17.046-13.821-30.867-30.867-30.867s-30.867 13.821-30.867 30.867v69.451h61.734V95.09zM63.759 527.232c0 17.046 13.821 30.867 30.867 30.867h69.451v-61.734H94.626c-17.047-0.001-30.867 13.82-30.867 30.867zM542.201 95.09c0-17.046-13.821-30.867-30.867-30.867s-30.867 13.821-30.867 30.867v69.451h61.734V95.09zM711.97 95.09c0-17.046-13.821-30.867-30.867-30.867s-30.867 13.821-30.867 30.867v69.451h61.734V95.09zM958.908 357.462c0-17.046-13.821-30.867-30.867-30.867h-54.018v61.734h54.018c17.046 0 30.867-13.821 30.867-30.867zM63.759 357.462c0 17.046 13.821 30.867 30.867 30.867h69.451v-61.734H94.626c-17.047 0-30.867 13.82-30.867 30.867zM928.041 666.134h-54.018v61.734h54.018c17.046 0 30.867-13.821 30.867-30.867s-13.821-30.867-30.867-30.867zM928.041 496.364h-54.018v61.734h54.018c17.046 0 30.867-13.821 30.867-30.867s-13.821-30.867-30.867-30.867zM650.236 928.505c0 17.046 13.821 30.867 30.867 30.867s30.867-13.821 30.867-30.867v-54.018h-61.734v54.018zM310.696 928.505c0 17.046 13.821 30.867 30.867 30.867s30.867-13.821 30.867-30.867v-54.018h-61.734v54.018zM480.466 928.505c0 17.046 13.821 30.867 30.867 30.867s30.867-13.821 30.867-30.867v-54.018h-61.734v54.018zM63.759 697.001c0 17.046 13.821 30.867 30.867 30.867h69.451v-61.734H94.626c-17.047 0-30.867 13.821-30.867 30.867z" p-id="2495"></path></svg>
+
+									</div>
+									<div class="col-md-7">
+										<div class="text-success">CPU名称：</div>{{cpu_name}}<br>
+										<div class="text-success">CPU核数：</div>{{cpu_core}}<br>
+										<div class="text-success">CPU主频：</div>{{cpu_speed}} GHz
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="card radius-10">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-5">
+										<svg t="1683510204169" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3191" width="150" height="150"><path d="M960 736c0 41.27-33.4 74.66-74.67 74.66H138.67C97.4 810.66 64 777.27 64 736V586.67C64 545.4 97.4 512 138.67 512h746.67c41.26 0 74.66 33.4 74.66 74.67V736zM138.67 462.38c-13.84 0-35.31 4.29-47.95 9.54l150.05-225.19c12.17-18.37 40.08-33.39 62.02-33.39h417.7c22.19 0 49.86 14.79 62.26 33.39L932.8 471.92c-15.27-5.73-31.49-9.06-47.71-9.54H138.67z m472.8 198.96c0 27.43 22.19 49.86 49.86 49.86 27.43 0 49.86-22.18 49.86-49.86 0-27.43-22.42-49.86-49.86-49.86-27.43 0.24-49.86 22.43-49.86 49.86z m149.34 0c0 27.43 22.19 49.86 49.86 49.86 27.43 0 49.86-22.18 49.86-49.86 0-27.43-22.42-49.86-49.86-49.86-27.44 0.24-49.86 22.43-49.86 49.86z" p-id="3192"></path></svg>
+
+									</div>
+									<div class="col-md-7 mt-2 mb-0">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="progress default-progress">
+													<div class="progress-bar bg-danger progress-animated" style="width: {{disk_info.C.percent}}%; height:16px;" role="progressbar">
+														{% comment %} <span class="sr-only">90% Complete</span> {% endcomment %}
+													</div>
+												</div>
+												<div class="d-flex align-items-end mt-2 pb-4 justify-content-between">
+													<span class="fs-14 font-w500">C盘空间</span>
+													<span class="fs-16"><span class="text-black pe-2"></span>余{{disk_info.C.free}}G</span>
+												</div>
+												<div class="progress default-progress">
+													<div class="progress-bar bg-danger progress-animated" style="width: {{disk_info.D.percent}}%; height:16px;" role="progressbar">
+														{% comment %} <span class="sr-only">90% Complete</span> {% endcomment %}
+													</div>
+												</div>
+												<div class="d-flex align-items-end mt-2 pb-4 justify-content-between">
+													<span class="fs-14 font-w500">D盘空间</span>
+													<span class="fs-16"><span class="text-black pe-2"></span>余{{disk_info.D.free}}G</span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="progress default-progress">
+													<div class="progress-bar bg-danger progress-animated" style="width: {{disk_info.E.percent}}%; height:16px;" role="progressbar">
+														{% comment %} <span class="sr-only">90% Complete</span> {% endcomment %}
+													</div>
+												</div>
+												<div class="d-flex align-items-end mt-2 pb-4 justify-content-between">
+													<span class="fs-14 font-w500">E盘空间</span>
+													<span class="fs-16"><span class="text-black pe-2"></span>余{{disk_info.E.free}}G</span>
+												</div>
+												<div class="progress default-progress">
+													<div class="progress-bar bg-info progress-animated" style="width: {{disk_info.F.percent}}%; height:16px;" role="progressbar">
+														{% comment %} <span class="sr-only">90% Complete</span> {% endcomment %}
+													</div>
+												</div>
+												<div class="d-flex align-items-end mt-2 pb-4 justify-content-between">
+													<span class="fs-14 font-w500">F盘空间</span>
+													<span class="fs-16"><span class="text-black pe-2"></span>余{{disk_info.F.free}}G</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-12">
+									<h4 class="card-title mb-4">CPU实时占用率(当前为<span class="text-success" id="now">0%</span>)</h4>
+									<div class=""><span class="updating-chart" id="numbers">0,0,0,0,0,0,0,0,0,0</span><!--5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,7,3,5,2-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!--end page wrapper -->
+		<!--start overlay-->
+		<div class="overlay toggle-icon"></div>
+		<!--end overlay-->
+		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+		<!--End Back To Top Button-->
+		<footer class="page-footer">
+			<p class="mb-0">Copyright © 2021. All right reserved.</p>
+		</footer>
+	</div>
+	<!--end wrapper-->
+	<!--start switcher-->
+	<div class="switcher-wrapper">
+		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
+		</div>
+		<div class="switcher-body">
+			<div class="d-flex align-items-center">
+				<h5 class="mb-0 text-uppercase">Theme Customizer</h5>
+				<button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
+			</div>
+			<hr/>
+			<h6 class="mb-0">Theme Styles</h6>
+			<hr/>
+			<div class="d-flex align-items-center justify-content-between">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
+					<label class="form-check-label" for="lightmode">Light</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="flexRadioDefault" id="darkmode">
+					<label class="form-check-label" for="darkmode">Dark</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="flexRadioDefault" id="semidark">
+					<label class="form-check-label" for="semidark">Semi Dark</label>
+				</div>
+			</div>
+			<hr/>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="minimaltheme" name="flexRadioDefault">
+				<label class="form-check-label" for="minimaltheme">Minimal Theme</label>
+			</div>
+			<hr/>
+			<h6 class="mb-0">Header Colors</h6>
+			<hr/>
+			<div class="header-colors-indigators">
+				<div class="row row-cols-auto g-3">
+					<div class="col">
+						<div class="indigator headercolor1" id="headercolor1"></div>
+					</div>
+					<div class="col">
+						<div class="indigator headercolor2" id="headercolor2"></div>
+					</div>
+					<div class="col">
+						<div class="indigator headercolor3" id="headercolor3"></div>
+					</div>
+					<div class="col">
+						<div class="indigator headercolor4" id="headercolor4"></div>
+					</div>
+					<div class="col">
+						<div class="indigator headercolor5" id="headercolor5"></div>
+					</div>
+					<div class="col">
+						<div class="indigator headercolor6" id="headercolor6"></div>
+					</div>
+					<div class="col">
+						<div class="indigator headercolor7" id="headercolor7"></div>
+					</div>
+					<div class="col">
+						<div class="indigator headercolor8" id="headercolor8"></div>
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<h6 class="mb-0">Sidebar Colors</h6>
+			<hr/>
+			<div class="header-colors-indigators">
+				<div class="row row-cols-auto g-3">
+					<div class="col">
+						<div class="indigator sidebarcolor1" id="sidebarcolor1"></div>
+					</div>
+					<div class="col">
+						<div class="indigator sidebarcolor2" id="sidebarcolor2"></div>
+					</div>
+					<div class="col">
+						<div class="indigator sidebarcolor3" id="sidebarcolor3"></div>
+					</div>
+					<div class="col">
+						<div class="indigator sidebarcolor4" id="sidebarcolor4"></div>
+					</div>
+					<div class="col">
+						<div class="indigator sidebarcolor5" id="sidebarcolor5"></div>
+					</div>
+					<div class="col">
+						<div class="indigator sidebarcolor6" id="sidebarcolor6"></div>
+					</div>
+					<div class="col">
+						<div class="indigator sidebarcolor7" id="sidebarcolor7"></div>
+					</div>
+					<div class="col">
+						<div class="indigator sidebarcolor8" id="sidebarcolor8"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end switcher-->
+	<!-- Bootstrap JS -->
+	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+	<!--plugins-->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<!--app JS-->
+	<script src="{% static 'js/app.js' %}"></script>
+	<script src="{% static 'js/jquery.peity.min.js' %}"></script>
+    <script src="{% static 'js/piety-init.js' %}"></script>
+
+	<script>
+		
+		// 定义定时器，每秒变化一次
+		setInterval(function() {
+			var cpu_percentage={{cpu_percentage|safe}};
+			t = $(".updating-chart")
+			// 获取需要变化的元素
+			var element = document.getElementById("numbers");
+			var element_now = document.getElementById("now");
+			// 更新元素的内容
+			//var e = Math.round(10 * Math.random()),
+			var json={
+				"cpu_percentage":0,
+				"csrfmiddlewaretoken": '{{ csrf_token }}'
+			};
+			$.ajax({
+                url: 'get_cpu_percentage/',
+                type: "POST",
+                data: json,
+                dataType: "json",
+                success: function (data) {
+                    cpu_percentage=data.cpu_percentage;
+					if(cpu_percentage==null) cpu_percentage=0
+					i = t.text().split(",");
+					i.shift(), i.push(cpu_percentage), t.text(i.join(",")).change();
+					element_now.textContent = cpu_percentage+"%"
+                }
+            });
+			
+			
+		}, 1500); // 1000毫秒 = 1秒
+	  </script>
+
+</body>
+
+</html>

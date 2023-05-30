@@ -1,4 +1,6 @@
 import datetime
+from random import seed
+import random
 from django.shortcuts import redirect, render
 from .models import Comment, Movie, People
 import jieba
@@ -49,7 +51,7 @@ def draw_word_cloud(movie_no, all_comments):
         my_cloud = WordCloud(
             background_color='white',  # 设置背景颜色  默认是black
             width=900, height=825,
-            max_words=80,            # 词云显示的最大词语数量
+            max_words=50,            # 词云显示的最大词语数量
             font_path='simhei.ttf',   # 设置字体  显示中文
             max_font_size=99,         # 设置字体最大值
             min_font_size=16,         # 设置子图最小值
@@ -64,6 +66,7 @@ def movie(request):
     if not status:
         return redirect('/authentication')
     moive_name_user = request.GET.get('moive_name_user')
+    movie_pic="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F159d3477-06cd-40ed-af19-d4686b910e46%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1685119601&t=e804ea0e80b04c17497b788135f021f9"
     count_spam = 0
     real_rating = 0
     rating = 0
@@ -74,16 +77,30 @@ def movie(request):
     movie_name = None
     movie_no = 404
     comment = None
+    movie_emotion=0
     all_comments=""
     movie_release=""
     movie_release_parse=""
     comment_date=""
     comment_date_delta=[0,0,0,0,0,0,0]
+    rate=0
+    count_extreme=0
+    spam_detail={
+        "comment_no":0,
+        "comment_nickname":"",
+        "comment_time":"",
+        "comment_rating":"",
+        "comment_vote":0,
+        "comment_content":"",
+    }
+    spam_list=[]
 
     if moive_name_user is None:
         moive_name_user = "阿凡达"  # 默认 阿凡达
     movie = Movie.objects.filter(movie_name__contains=moive_name_user)
     if len(movie) == 1:
+        movie_emotion=movie[0].movie_emotion
+        movie_pic = movie[0].movie_pic
         movie_no = movie[0].movie_no
         movie_name = movie[0].movie_name
         rating = movie[0].movie_score
@@ -137,20 +154,42 @@ def movie(request):
             if comm.comment_isspam == 1:
                 count_spam+=1
                 spam_voting += comm.comment_vote
+                spam_detail={
+                    "comment_no":0,
+                    "comment_nickname":"",
+                    "comment_time":"",
+                    "comment_rating":"",
+                    "comment_vote":0,
+                    "comment_content":"",
+                }
+                spam_detail["comment_content"]=comm.comment_content
+                spam_detail["comment_nickname"]=comm.comment_userid
+                spam_detail["comment_no"]=comm.comment_no
+                spam_detail["comment_rating"]=comm.comment_rating
+                spam_detail["comment_time"]=str(comm.comment_time).split("+")[0]
+                spam_detail["comment_vote"]=comm.comment_vote
+                spam_list.append(spam_detail)
             else:
                 real_rating += comm.comment_rating
+            if comm.comment_rating==5 or comm.comment_rating==1:
+                count_extreme+=1
         real_rating = format(2*real_rating/(len(comment)-count_spam), '.1f')
         our_database_rating = format(2*our_database_rating/len(comment), '.1f')
         influence = format(spam_voting/voting, '.2f')
 
-        draw_word_cloud(movie_no=movie_no, all_comments=all_comments)
+        try:
+            rate=format(100*count_spam/len(comment), '.2f')
+            count_extreme=format(100*count_extreme/len(comment), '.2f')
+        except ZeroDivisionError:
+            rate=0
+            count_extreme=0
 
     else:
         # count_spam = "未查询到电影"
         movie_name = '未查询到"{}"电影'.format(moive_name_user)
         comment = []
 
-    return render(request, "movie/movie.html", {"movie_release_parse":movie_release_parse,"comment_date_delta":comment_date_delta,"movie_name":movie_name,"count_spam":count_spam, "real_rating":real_rating, "rating":rating, "count_comment":len(comment), "influence":influence, "wordcloud":movie_no})
+    return render(request, "movie/movie.html", {"count_extreme":count_extreme, "rate":rate, "movie_emotion":movie_emotion,"movie_pic":movie_pic,"spam_list":spam_list, "movie_release_parse":movie_release_parse,"comment_date_delta":comment_date_delta,"movie_name":movie_name,"count_spam":count_spam, "real_rating":real_rating, "rating":rating, "count_comment":len(comment), "influence":influence, "wordcloud":movie_no})
 
 def detail(request):
     status = request.COOKIES.get('is_login') # 收到浏览器的再次请求,判断浏览器携带的cookie是不是登录成功的时候响应的 cookie

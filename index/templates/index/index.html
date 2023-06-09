@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>影盾 - 大数据展示平台</title>
+    <title>FilmGuard - 大数据展示平台</title>
     <link rel="icon" href="{% static 'images/logo-SVG.png' %}" type="image/png" />
     <script type="text/javascript" src="{% static 'index/js/jquery.js' %}"></script>
     <link rel="stylesheet" href="{% static 'index/css/comon0.css' %}">
@@ -50,7 +50,7 @@
         <div class="loadbox"> <img src="{% static 'index/images/loading.gif' %}"> 页面加载中... </div>
     </div>
     <div class="head">
-        <h1>影盾大数据展示平台</h1><!--<img src="{% static 'images/logo-SVG.png' %}" width="50%">-->
+        <h1>FilmGuard大数据展示平台</h1><!--<img src="{% static 'images/logo-SVG.png' %}" width="50%">-->
         <div class="weather"><!--<img src="{% static 'index/images/weather.png' %}"><span>多云转小雨</span>--><span id="showTime"></span></div>
     </div>
     <script>
@@ -80,7 +80,7 @@
                         <ul class="clearfix">
                             <li><h2>52</h2><span>今日恶意评论</span></li>
                             <li><h2>23</h2><span>今日恶意用户</span></li>
-                            <li><h2>31</h2><span>总水军团体数</span></li>
+                            <li><h2>4</h2><span>总水军团体数</span></li>
                         </ul>
                         <div style="border-bottom: 1px solid rgba(255,255,255,.1)"></div>
                         <ul class="clearfix">
@@ -106,7 +106,7 @@
                     <div class="boxfoot"></div>
                 </div>
                 <div class="boxall" style="height: 2.95rem">
-                    <div class="alltitle">行业区分比例</div>
+                    <div class="alltitle">水军较多的电影类型</div>
                     <div id="echarts4" style="height: 2.2rem; width: 100%;"></div>
                     <div class="boxfoot"></div>
                 </div>
@@ -116,7 +116,7 @@
                     <div class="barbox">
                         <ul class="clearfix">
                             <li class="pulll_left counter">{{count_spam_total}}</li>
-                            <li class="pulll_left counter">263</li>
+                            <li class="pulll_left counter">{{count_spammer}}</li>
                         </ul>
                     </div>
                     <div class="barbox2">
@@ -130,7 +130,7 @@
                     <div class="map1"><img src="{% static 'index/images/lbx.png' %}"></div>
                     <div class="map2"><img src="{% static 'index/images/jt.png' %}"></div>
                     <div class="map3"><img src="{% static 'index/images/map.png' %}"></div>
-                    <div class="map4" id="map_1"></div>
+                    <div class="map4" id="MapChina" style="height: 400px; width: 500px; position:relative; left:20px"></div> <!--map_1-->
                 </div>
             </li>
             <li>
@@ -181,7 +181,7 @@
                     </div> -->
                     <div class="boxfoot"></div>
                 </div>
-                <div class="boxall" style="height: 15.0rem">
+                <div class="boxall" style="height: 5.0rem">
                     {% comment %} <div class="alltitle">近期电影垃圾评论展示</div> {% endcomment %}
                     <div class="wrap">
                         <br>
@@ -210,6 +210,12 @@
                             <li>
                                 <p>{{comment8}}</p>
                             </li>
+                            <li>
+                                <p>{{comment9}}</p>
+                            </li>
+                            <li>
+                                <p>{{comment10}}</p>
+                            </li>
                         </ul>
                     </div>
                     <div class="boxfoot"></div>
@@ -222,9 +228,11 @@
     <script language="JavaScript" src="{% static 'index/js/js.js' %}"></script>
     <script type="text/javascript" src="{% static 'index/js/echarts.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'index/js/china.js' %}"></script>
-    <script type="text/javascript" src="{% static 'index/js/area_echarts.js' %}"></script>
+    {% comment %} <script type="text/javascript" src="{% static 'index/js/area_echarts.js' %}"></script> {% endcomment %}
     <script type="text/javascript">
         $(document).ready(function () {
+            chart.resize();
+            myChart.resize();
             // myChart1.resize();
             myChart2.resize();
             // myChart3.resize();
@@ -233,6 +241,8 @@
             // myChart8.resize();
         })
         window.addEventListener("resize", function () {
+            chart.resize();
+            myChart.resize();
             // myChart1.resize();
             myChart2.resize();
             // myChart3.resize();
@@ -340,341 +350,25 @@
         // });
     </script>
     <script type="text/javascript">
-        var v0 = 1000;
-        var v1 = 353;
-        var v2 = 178;
-        var v3 = 68;
-
-
-
-        var myChart6 = echarts.init(document.getElementById('echarts6'));
-        option6 = {
-            series: [{
-                type: 'pie',
-                radius: ['70%', '80%'],
-                color: '#0088cc',
-                label: {
-                    normal: {
-                        position: 'center'
-                    }
-                },
-                data: [{
-                    value: v1,
-                    name: '新增会员',
-                    label: {
-                        normal: {
-                            formatter: v1 + '',
-                            textStyle: {
-                                fontSize: 20,
-                                color: '#fff',
-                            }
-                        }
-                    }
-                },
-                       {
-                           value: v0,
-                           name: '老会员',
-                           label: {
-                               normal: {
-                                   formatter: function (params) {
-                                       return '占比' + Math.round(v1 / v0 * 100) + '%'
-                                   },
-                                   textStyle: {
-                                       color: '#aaa',
-                                       fontSize: 12
-                                   }
-                               }
-                           },
-                           itemStyle: {
-                               normal: {
-                                   color: 'rgba(255,255,255,.2)'
-                               },
-                               emphasis: {
-                                   color: '#fff'
-                               }
-                           },
-                       }]
-            }]
-
-        };
-
-        var myChart7 = echarts.init(document.getElementById('echarts7'));
-        option7 = {
-            series: [{
-                type: 'pie',
-                radius: ['70%', '80%'],
-                color: '#fccb00',
-                label: {
-                    normal: {
-                        position: 'center'
-                    }
-                },
-                data: [{
-                    value: v2,
-                    name: '新增领卡会员',
-                    label: {
-                        normal: {
-                            formatter: v2 + '',
-                            textStyle: {
-                                fontSize: 20,
-                                color: '#fff',
-                            }
-                        }
-                    }
-                },
-                       {
-                           value: v0,
-                           name: '总领卡会员',
-                           label: {
-                               normal: {
-                                   formatter: function (params) {
-                                       return '占比' + Math.round(v2 / v0 * 100) + '%'
-                                   },
-                                   textStyle: {
-                                       color: '#aaa',
-                                       fontSize: 12
-                                   }
-                               }
-                           },
-                           itemStyle: {
-                               normal: {
-                                   color: 'rgba(255,255,255,.2)'
-                               },
-                               emphasis: {
-                                   color: '#fff'
-                               }
-                           },
-                       }]
-            }]
-        };
-
-
-        var myChart8 = echarts.init(document.getElementById('echarts8'));
-        option8 = {
-
-
-            series: [{
-
-                type: 'pie',
-                radius: ['70%', '80%'],
-                color: '#62b62f',
-                label: {
-                    normal: {
-                        position: 'center'
-                    }
-                },
-                data: [{
-                    value: v3,
-                    name: '女消费',
-                    label: {
-                        normal: {
-                            formatter: v3 + '',
-                            textStyle: {
-                                fontSize: 20,
-                                color: '#fff',
-                            }
-                        }
-                    }
-                }, {
-                    value: v0,
-                    name: '男消费',
-                    label: {
-                        normal: {
-                            formatter: function (params) {
-                                return '占比' + Math.round(v2 / v0 * 100) + '%'
-                            },
-                            textStyle: {
-                                color: '#aaa',
-                                fontSize: 12
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: 'rgba(255,255,255,.2)'
-                        },
-                        emphasis: {
-                            color: '#fff'
-                        }
-                    },
-                }]
-            }]
-        };
-        setTimeout(function () {
-            myChart6.setOption(option6);
-            myChart7.setOption(option7);
-            myChart8.setOption(option8);
-        }, 500);
-
-    </script>
-    <!-- <script type="text/javascript">
-        var myChart1 = echarts.init(document.getElementById('echarts1'));
-        var v1 = 298;
-        var v2 = 523;
-        var v3 = v1 + v2;
-        option1 = {
-
-      
-            series: [{
-                type: 'pie',
-                radius: ['70%', '80%'],
-                color: '#0088cc',
-                label: {
-                    normal: {
-                        position: 'center'
-                    }
-                },
-                data: [{
-                    value: v1,
-                    name: '平均单客价',
-                    label: {
-                        normal: {
-                            formatter: v3 + '',
-                            textStyle: {
-                                fontSize: 20,
-                                color: '#fff',
-                            }
-                        }
-                    }
-                },
-                ]
-            }]
-        };
-
-
-        var myChart3 = echarts.init(document.getElementById('echarts3'));
-        var v1 = 298 
-        var v2 = 523 
-        var v3 = v1 + v2 
-        option2 = {
-
-       
-            series: [{
-                type: 'pie',
-                radius: ['70%', '80%'],
-                color: '#fccb00',
-                label: {
-                    normal: {
-                        position: 'center'
-                    }
-                },
-                data: [{
-                    value: v1,
-                    name: '男消费',
-                    label: {
-                        normal: {
-                            formatter: v1 + '',
-                            textStyle: {
-                                fontSize: 20,
-                                color: '#fff',
-                            }
-                        }
-                    }
-                }, {
-                    value: v2,
-                    name: '女消费',
-                    label: {
-                        normal: {
-                            formatter: function (params) {
-                                return '占比' + Math.round(v1 / v3 * 100) + '%'
-                            },
-                            textStyle: {
-                                color: '#aaa',
-                                fontSize: 12
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: 'rgba(255,255,255,.2)'
-                        },
-                        emphasis: {
-                            color: '#fff'
-                        }
-                    },
-                }]
-            }]
-        };
-
-
-        var myChart2 = echarts.init(document.getElementById('echarts2'));
-        option3 = {
-
-
-            series: [{
-
-                type: 'pie',
-                radius: ['70%', '80%'],
-                color: '#62b62f',
-                label: {
-                    normal: {
-                        position: 'center'
-                    }
-                },
-                data: [{
-                    value: v2,
-                    name: '女消费',
-                    label: {
-                        normal: {
-                            formatter: v2 + '',
-                            textStyle: {
-                                fontSize: 20,
-                                color: '#fff',
-                            }
-                        }
-                    }
-                }, {
-                    value: v1,
-                    name: '男消费',
-                    label: {
-                        normal: {
-                            formatter: function (params) {
-                                return '占比' + Math.round(v2 / v3 * 100) + '%'
-                            },
-                            textStyle: {
-                                color: '#aaa',
-                                fontSize: 12
-                            }
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: 'rgba(255,255,255,.2)'
-                        },
-                        emphasis: {
-                            color: '#fff'
-                        }
-                    },
-                }]
-            }]
-        };
-        setTimeout(function () {
-            myChart1.setOption(option1);
-            myChart2.setOption(option2);
-            myChart3.setOption(option3);
-        }, 500);
-
-    </script> -->
-    <script type="text/javascript">
         var myChart = echarts.init(document.getElementById('echarts4'));
         var plantCap = [{
-            name: '工业',
-            value: '222'
+            name: '剧情',
+            value: '51'
         }, {
-            name: '农业',
-            value: '115'
+            name: '动作',
+            value: '33'
         }, {
-            name: '互联网',
-            value: '113'
+            name: '喜剧',
+            value: '20'
         }, {
-            name: '医疗',
-            value: '95'
+            name: '历史',
+            value: '12'
         }, {
-            name: '文学',
-            value: '92'
+            name: '爱情',
+            value: '8'
         }, {
-            name: '服装',
-            value: '87'
+            name: '悬疑',
+            value: '13'
         }];
         var datalist = [{
             offset: [56, 48],
@@ -804,9 +498,105 @@
         }
     </script>
     <script type="text/javascript">
+        function redirect3(){
+            window.location.href="/colony/"
+        }
+    </script>
+    <script type="text/javascript">
         function redirect4(){
             window.location.href="/spiders/"
         }
+    </script>
+    <script type="text/javascript">
+        function redirect5(){
+            window.location.href="/alarm/"
+        }
+    </script>
+    <script>
+        data_from_back={{return_ip_list | safe}};
+        JSON.parse(JSON.stringify(data_from_back))
+        
+    </script>
+    <script>
+        function randomValue() {
+            return Math.round(Math.random()*2000);
+        }
+        
+        option = {
+            //backgroundColor:'block',
+            tooltip: {},
+            visualMap: {
+                min: 0,
+                max: 40,
+                text:['数量多','数量少'],
+                realtime: false,
+                calculable: true,
+                inRange: {
+                    color: ['#e0ffff', 'red']
+                },
+                textStyle: {
+                    color: 'rgba(255,255,255)'
+                }
+            },
+            geo: {
+                map: 'china',
+                roam: true,
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize:8,
+                            color: 'rgba(0,0,0,0.4)'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal:{
+                        borderColor: 'rgba(0, 0, 0, 0.2)'
+                    },
+                    emphasis:{
+                        areaColor: null,
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+            series : [
+                {
+                    name: '水军数量',
+                    type: 'map',
+                    roam: true,
+                    coordinateSystem: 'geo',
+                    geoIndex: 0,
+                    // tooltip: {show: false},
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            position: 'right',
+                            show: false
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#F06C00'
+                        }
+                    },
+                    data:data_from_back
+                }
+            ]
+        };
+        
+        var chart=echarts.init(document.getElementById("MapChina"));
+        chart.setOption(option, {
+            width: '100%',
+            height: '500px'
+        });
     </script>
 
 </body>

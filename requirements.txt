@@ -1,0 +1,7 @@
+Django==4.2
+jieba==0.42.1
+matplotlib==3.5.3
+wordcloud==1.8.2.2
+WMI==1.5.1
+pywin32==304
+pypiwin32==223

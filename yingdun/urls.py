@@ -27,4 +27,5 @@ urlpatterns = [
     path("spammer/", include("spammer.urls")),
     path("system/", include("system.urls")),
     path("alarm/", include("alarm.urls")),
+    path("colony/", include("colony.urls")),
 ]

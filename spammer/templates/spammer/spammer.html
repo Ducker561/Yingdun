@@ -45,7 +45,7 @@
 		<link rel="stylesheet" href="{% static 'css/dark-theme.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/semi-dark.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/header-colors.css' %}" />
-		<title>影盾 - 守护佳影 盾卫真实</title>
+		<title>FilmGuard - 守护佳影 盾卫真实</title>
 	</head>
 
 	<body>
@@ -58,7 +58,7 @@
 					<img src="{% static 'images/logo-SVG.png' %}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
-					<h4 class="logo-text">影  盾</h4>
+					<h4 class="logo-text">FilmGuard</h4>
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>
@@ -167,11 +167,11 @@
 						<div class="mobile-toggle-menu"><i class="bx bx-menu"></i></div>
 						<div class="search-bar flex-grow-1">
 							<div class="position-relative search-bar-box">
-								<input
+								{% comment %} <input
 									type="text"
 									class="form-control search-control"
 									placeholder="Type to search..."
-								/>
+								/> {% endcomment %}
 								<span
 									class="position-absolute top-50 search-show translate-middle-y"
 									><i class="bx bx-search"></i
@@ -683,8 +683,8 @@
 									alt="user avatar"
 								/>
 								<div class="user-info ps-3">
-									<p class="user-name mb-0">Pauline Seitz</p>
-									<p class="designattion mb-0">Web Designer</p>
+									<p class="user-name mb-0" id="uname"></p>
+									<p class="designattion mb-0" id="uuid"></p>
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-end">
@@ -767,7 +767,7 @@
 									<div class="d-flex align-items-center">
 										<div>
 											<p class="mb-0 text-secondary">疑似水军数量</p>
-											<h4 class="my-1 text-info">4805</h4>
+											<h4 class="my-1 text-info">{{count_spammer}}</h4>
 											{% comment %}
 											<p class="mb-0 font-13">+2.5% from last week</p>
 											{% endcomment %}
@@ -811,7 +811,7 @@
 									<div class="d-flex align-items-center">
 										<div>
 											<p class="mb-0 text-secondary">数据库中水军占比</p>
-											<h4 class="my-1 text-success">14.6%</h4>
+											<h4 class="my-1 text-success">{{spammer_rate}}%</h4>
 											{% comment %}
 											<p class="mb-0 font-13">-4.5% from last week</p>
 											{% endcomment %}
@@ -1057,7 +1057,7 @@
 													<td>{{people.people_ip}}</td>
 													<td>{{people.people_contacts}}</td>
 													<td>{{people.people_revcontacts}}</td>
-													<td>{{people.people_pastmovie}}</td>
+													<td style="white-space: pre-wrap; word-wrap: break-word;">{{people.people_pastmovie}}</td>
 												</tr>
 											{% endfor %}
 										{% endblock %}
@@ -1079,356 +1079,6 @@
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-12 col-lg-7 col-xl-8 d-flex">
-							<div class="card radius-10 w-100">
-								<div class="card-header bg-transparent">
-									<div class="d-flex align-items-center">
-										<div>
-											<h6 class="mb-0">Recent Orders</h6>
-										</div>
-										<div class="dropdown ms-auto">
-											<a
-												class="dropdown-toggle dropdown-toggle-nocaret"
-												href="#"
-												data-bs-toggle="dropdown"
-												><i
-													class="bx bx-dots-horizontal-rounded font-22 text-option"
-												></i>
-											</a>
-											<ul class="dropdown-menu">
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Action</a
-													>
-												</li>
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Another action</a
-													>
-												</li>
-												<li>
-													<hr class="dropdown-divider" />
-												</li>
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Something else here</a
-													>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="row">
-										<div class="col-lg-7 col-xl-8 border-end">
-											<div id="geographic-map-2"></div>
-										</div>
-										<div class="col-lg-5 col-xl-4">
-											<div class="mb-4">
-												<p class="mb-2">
-													<i class="flag-icon flag-icon-us me-1"></i> USA
-													<span class="float-end">70%</span>
-												</p>
-												<div class="progress" style="height: 7px">
-													<div
-														class="progress-bar bg-primary progress-bar-striped"
-														role="progressbar"
-														style="width: 70%"
-													></div>
-												</div>
-											</div>
-
-											<div class="mb-4">
-												<p class="mb-2">
-													<i class="flag-icon flag-icon-ca me-1"></i> Canada
-													<span class="float-end">65%</span>
-												</p>
-												<div class="progress" style="height: 7px">
-													<div
-														class="progress-bar bg-danger progress-bar-striped"
-														role="progressbar"
-														style="width: 65%"
-													></div>
-												</div>
-											</div>
-
-											<div class="mb-4">
-												<p class="mb-2">
-													<i class="flag-icon flag-icon-gb me-1"></i> England
-													<span class="float-end">60%</span>
-												</p>
-												<div class="progress" style="height: 7px">
-													<div
-														class="progress-bar bg-success progress-bar-striped"
-														role="progressbar"
-														style="width: 60%"
-													></div>
-												</div>
-											</div>
-
-											<div class="mb-4">
-												<p class="mb-2">
-													<i class="flag-icon flag-icon-au me-1"></i> Australia
-													<span class="float-end">55%</span>
-												</p>
-												<div class="progress" style="height: 7px">
-													<div
-														class="progress-bar bg-warning progress-bar-striped"
-														role="progressbar"
-														style="width: 55%"
-													></div>
-												</div>
-											</div>
-
-											<div class="mb-4">
-												<p class="mb-2">
-													<i class="flag-icon flag-icon-in me-1"></i> India
-													<span class="float-end">50%</span>
-												</p>
-												<div class="progress" style="height: 7px">
-													<div
-														class="progress-bar bg-info progress-bar-striped"
-														role="progressbar"
-														style="width: 50%"
-													></div>
-												</div>
-											</div>
-
-											<div class="mb-0">
-												<p class="mb-2">
-													<i class="flag-icon flag-icon-cn me-1"></i> China
-													<span class="float-end">45%</span>
-												</p>
-												<div class="progress" style="height: 7px">
-													<div
-														class="progress-bar bg-dark progress-bar-striped"
-														role="progressbar"
-														style="width: 45%"
-													></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-12 col-lg-5 col-xl-4 d-flex">
-							<div class="card w-100 radius-10">
-								<div class="card-body">
-									<div class="card radius-10 border shadow-none">
-										<div class="card-body">
-											<div class="d-flex align-items-center">
-												<div>
-													<p class="mb-0 text-secondary">Total Likes</p>
-													<h4 class="my-1">45.6M</h4>
-													<p class="mb-0 font-13">+6.2% from last week</p>
-												</div>
-												<div
-													class="widgets-icons-2 bg-gradient-cosmic text-white ms-auto"
-												>
-													<i class="bx bxs-heart-circle"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card radius-10 border shadow-none">
-										<div class="card-body">
-											<div class="d-flex align-items-center">
-												<div>
-													<p class="mb-0 text-secondary">Comments</p>
-													<h4 class="my-1">25.6K</h4>
-													<p class="mb-0 font-13">+3.7% from last week</p>
-												</div>
-												<div
-													class="widgets-icons-2 bg-gradient-ibiza text-white ms-auto"
-												>
-													<i class="bx bxs-comment-detail"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="card radius-10 mb-0 border shadow-none">
-										<div class="card-body">
-											<div class="d-flex align-items-center">
-												<div>
-													<p class="mb-0 text-secondary">Total Shares</p>
-													<h4 class="my-1">85.4M</h4>
-													<p class="mb-0 font-13">+4.6% from last week</p>
-												</div>
-												<div
-													class="widgets-icons-2 bg-gradient-moonlit text-white ms-auto"
-												>
-													<i class="bx bxs-share-alt"></i>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--end row-->
-
-					<div class="row row-cols-1 row-cols-lg-3">
-						<div class="col d-flex">
-							<div class="card radius-10 w-100">
-								<div class="card-body">
-									<p class="font-weight-bold mb-1 text-secondary">
-										Weekly Revenue
-									</p>
-									<div class="d-flex align-items-center mb-4">
-										<div>
-											<h4 class="mb-0">$89,540</h4>
-										</div>
-										<div class="">
-											<p
-												class="mb-0 align-self-center font-weight-bold text-success ms-2"
-											>
-												4.4% <i class="bx bxs-up-arrow-alt mr-2"></i>
-											</p>
-										</div>
-									</div>
-									<div class="chart-container-0">
-										<canvas id="chart3"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col d-flex">
-							<div class="card radius-10 w-100">
-								<div class="card-header bg-transparent">
-									<div class="d-flex align-items-center">
-										<div>
-											<h6 class="mb-0">Orders Summary</h6>
-										</div>
-										<div class="dropdown ms-auto">
-											<a
-												class="dropdown-toggle dropdown-toggle-nocaret"
-												href="#"
-												data-bs-toggle="dropdown"
-												><i
-													class="bx bx-dots-horizontal-rounded font-22 text-option"
-												></i>
-											</a>
-											<ul class="dropdown-menu">
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Action</a
-													>
-												</li>
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Another action</a
-													>
-												</li>
-												<li>
-													<hr class="dropdown-divider" />
-												</li>
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Something else here</a
-													>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container-1">
-										<canvas id="chart4"></canvas>
-									</div>
-								</div>
-								<ul class="list-group list-group-flush">
-									<li
-										class="list-group-item d-flex bg-transparent justify-content-between align-items-center"
-									>
-										Completed
-										<span class="badge bg-gradient-quepal rounded-pill"
-											>25</span
-										>
-									</li>
-									<li
-										class="list-group-item d-flex bg-transparent justify-content-between align-items-center"
-									>
-										Pending
-										<span class="badge bg-gradient-ibiza rounded-pill">10</span>
-									</li>
-									<li
-										class="list-group-item d-flex bg-transparent justify-content-between align-items-center"
-									>
-										Process
-										<span class="badge bg-gradient-deepblue rounded-pill"
-											>65</span
-										>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col d-flex">
-							<div class="card radius-10 w-100">
-								<div class="card-header bg-transparent">
-									<div class="d-flex align-items-center">
-										<div>
-											<h6 class="mb-0">Top Selling Categories</h6>
-										</div>
-										<div class="dropdown ms-auto">
-											<a
-												class="dropdown-toggle dropdown-toggle-nocaret"
-												href="#"
-												data-bs-toggle="dropdown"
-												><i
-													class="bx bx-dots-horizontal-rounded font-22 text-option"
-												></i>
-											</a>
-											<ul class="dropdown-menu">
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Action</a
-													>
-												</li>
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Another action</a
-													>
-												</li>
-												<li>
-													<hr class="dropdown-divider" />
-												</li>
-												<li>
-													<a class="dropdown-item" href="javascript:;"
-														>Something else here</a
-													>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container-0">
-										<canvas id="chart5"></canvas>
-									</div>
-								</div>
-								<div class="row row-group border-top g-0">
-									<div class="col">
-										<div class="p-3 text-center">
-											<h4 class="mb-0 text-danger">$45,216</h4>
-											<p class="mb-0">Clothing</p>
-										</div>
-									</div>
-									<div class="col">
-										<div class="p-3 text-center">
-											<h4 class="mb-0 text-success">$68,154</h4>
-											<p class="mb-0">Electronic</p>
-										</div>
-									</div>
-								</div>
-								<!--end row-->
-							</div>
-						</div>
-					</div>
-					<!--end row-->
 				</div>
 			</div>
 			<!--end page wrapper -->
@@ -1441,7 +1091,7 @@
 			></a>
 			<!--End Back To Top Button-->
 			<footer class="page-footer">
-				<p class="mb-0">Copyright © 2021. All right reserved.</p>
+				<p class="mb-0">Copyright © 2023. CuteCat Lab. All rights reserved.</p>
 			</footer>
 		</div>
 		<!--end wrapper-->
@@ -1584,6 +1234,29 @@
 		<script src="{% static 'js/index.js' %}"></script>
 		<!--app JS-->
 		<script src="{% static 'js/app.js' %}"></script>
+		<script>
+			// 通过 JavaScript 获取 cookie 中的用户名信息
+			function getCookieValue(name) {
+			  const cookies = document.cookie.split(';');
+			  for (let i = 0; i < cookies.length; i++) {
+				const cookie = cookies[i].trim();
+				if (cookie.startsWith(name + '=')) {
+				  return cookie.substring(name.length + 1);
+				}
+			  }
+			  return null;
+			}
+		  
+			// 在页面加载时获取用户名信息，并插入到相应的 HTML 元素中
+			document.addEventListener('DOMContentLoaded', function() {
+			  const username = getCookieValue('username');
+			  const userid = getCookieValue('userid');
+			  if (username) {
+				document.getElementById('uname').textContent = username;
+				document.getElementById('uuid').textContent = userid;
+			  }
+			});
+		</script>
 		<style>
 			.copyrights {
 				text-indent: -9999px;
@@ -1593,10 +1266,10 @@
 				overflow: hidden;
 			}
 		</style>
-		<div class="copyrights">
+		{% comment %} <div class="copyrights">
 			Collect from
 			<a href="http://www.css' %}moban.com/" title="网站模板">模板之家</a>
 			<a href="https://www.chazidian.com/" title="查字典">查字典</a>
-		</div>
+		</div> {% endcomment %}
 	</body>
 </html>

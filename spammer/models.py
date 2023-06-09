@@ -18,6 +18,7 @@ class People(models.Model):
     people_pastmovie = models.CharField(max_length=255, blank=True, null=True)
     people_contacts = models.IntegerField(blank=True, null=True)
     people_revcontacts = models.IntegerField(blank=True, null=True)
+    people_isspam = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

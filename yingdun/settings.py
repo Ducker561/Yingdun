@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "spammer.apps.SpammerConfig",
     "system.apps.SystemConfig",
     "alarm.apps.AlarmConfig",
+    "colony.apps.ColonyConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

@@ -21,6 +21,7 @@ def login(request):
             random_str = ''.join(random.sample(string.ascii_letters + string.digits, 32))
             rep.set_cookie("is_login", random_str)
             rep.set_cookie("userid", userid)
+            rep.set_cookie("username", user[0].user_name)
             return rep
             return JsonResponse({'res':1})
         else:

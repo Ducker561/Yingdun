@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="{% static 'css/semi-dark.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/header-colors.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" />
-	<title>影盾 - 守护佳影 盾卫真实</title>
+	<title>FilmGuard - 守护佳影 盾卫真实</title>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 					<img src="{% static 'images/logo-SVG.png' %}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
-					<h4 class="logo-text">影  盾</h4>
+					<h4 class="logo-text">FilmGuard</h4>
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>
@@ -153,7 +153,7 @@
 					</div>
 					<div class="search-bar flex-grow-1">
 						<div class="position-relative search-bar-box">
-							<input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
+							{% comment %} <input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span> {% endcomment %}
 							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
 						</div>
 					</div>
@@ -474,8 +474,8 @@
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<img src="{% static 'images/avatars/avatar-2.png' %}" class="user-img" alt="user avatar">
 							<div class="user-info ps-3">
-								<p class="user-name mb-0">Pauline Seitz</p>
-								<p class="designattion mb-0">Web Designer</p>
+								<p class="user-name mb-0" id="uname"></p>
+								<p class="designattion mb-0" id="uuid"></p>
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
@@ -576,7 +576,7 @@
 										<td><div class="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i class='bx bxs-circle me-1'></i>Error</div></td>
 										<td>短评 / 铃芽之旅</td>
 										<td><div type="button" class="badge text-danger bg-light-danger p-2 px-3">高速</div></td>
-										<td>4-29 21:38:22</td>
+										<td>5-22 21:38:22</td>
 										<td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">点击查看</button></td>
 										<td>
 											<div class="d-flex order-actions">
@@ -626,7 +626,7 @@
 										<td><div class="badge rounded-pill text-warning bg-light-warning p-2 text-uppercase px-3"><i class='bx bxs-circle align-middle me-1'></i>Waiting</div></td>
 										<td>个人 / 长津湖</td>
 										<td><div type="button" class="badge text-info bg-light-info p-2 px-3">中速</div></td>
-										<td>4-30 21:45:24</td>
+										<td>5-23 21:45:24</td>
 										<td><button type="button" class="btn btn-primary btn-sm radius-30 px-4">点击查看</button></td>
 										<td>
 											<div class="d-flex order-actions">
@@ -677,7 +677,7 @@
 		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
 		<footer class="page-footer">
-			<p class="mb-0">Copyright © 2023. CuteCat Inc. All rights reserved.</p>
+			<p class="mb-0">Copyright © 2023. CuteCat Lab. All rights reserved.</p>
 		</footer>
 	</div>
 	<!--end wrapper-->
@@ -1431,6 +1431,29 @@
 			$("#inquireDetail").click(function() {
 				$("#detailForm").dialog("open");
 			});
+		});
+	</script>
+	<script>
+		// 通过 JavaScript 获取 cookie 中的用户名信息
+		function getCookieValue(name) {
+		  const cookies = document.cookie.split(';');
+		  for (let i = 0; i < cookies.length; i++) {
+			const cookie = cookies[i].trim();
+			if (cookie.startsWith(name + '=')) {
+			  return cookie.substring(name.length + 1);
+			}
+		  }
+		  return null;
+		}
+	  
+		// 在页面加载时获取用户名信息，并插入到相应的 HTML 元素中
+		document.addEventListener('DOMContentLoaded', function() {
+		  const username = getCookieValue('username');
+		  const userid = getCookieValue('userid');
+		  if (username) {
+			document.getElementById('uname').textContent = username;
+			document.getElementById('uuid').textContent = userid;
+		  }
 		});
 	</script>
 </body>

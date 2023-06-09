@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="{% static 'css/dark-theme.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/semi-dark.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/header-colors.css' %}" />
-	<title>影盾 - 守护佳影 盾卫真实</title>
+	<title>FilmGuard - 守护佳影 盾卫真实</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
 					<img src="{% static 'images/logo-SVG.png' %}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
-					<h4 class="logo-text">影  盾</h4>
+					<h4 class="logo-text">FilmGuard</h4>
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>
@@ -538,8 +538,8 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<img src="{% static 'images/avatars/avatar-2.png' %}" class="user-img" alt="user avatar">
 							<div class="user-info ps-3">
-								<p class="user-name mb-0">Pauline Seitz</p>
-								<p class="designattion mb-0">Web Designer</p>
+								<p class="user-name mb-0" id="uname"></p>
+								<p class="designattion mb-0" id="uuid"></p>
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
@@ -601,7 +601,7 @@
 				</div>
 				<!--end breadcrumb-->
 
-				<div class="card">
+				<div class="card radius-10">
 					<div class="row g-0">
 						<div class="col-md-4 border-end" align="center">
 							<img src="{{movie_pic}}" class="img-fluid" alt="..." style="padding-top: 5%;height: 90%;width: 90%;">
@@ -634,170 +634,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- </div> -->
-					<hr />
-					<div class="card-body">
-						<ul class="nav nav-tabs nav-primary mb-0" role="tablist">
-							<li class="nav-item" role="presentation">
-								<a class="nav-link active" data-bs-toggle="tab" href="#primaryhome" role="tab"
-									aria-selected="true">
-									<div class="d-flex align-items-center">
-										<div class="tab-icon"><i class='bx bx-comment-detail font-18 me-1'></i>
-										</div>
-										<div class="tab-title"> Product Description </div>
-									</div>
-								</a>
-							</li>
-							<li class="nav-item" role="presentation">
-								<a class="nav-link" data-bs-toggle="tab" href="#primaryprofile" role="tab"
-									aria-selected="false">
-									<div class="d-flex align-items-center">
-										<div class="tab-icon"><i class='bx bx-bookmark-alt font-18 me-1'></i>
-										</div>
-										<div class="tab-title">Tags</div>
-									</div>
-								</a>
-							</li>
-							<li class="nav-item" role="presentation">
-								<a class="nav-link" data-bs-toggle="tab" href="#primarycontact" role="tab"
-									aria-selected="false">
-									<div class="d-flex align-items-center">
-										<div class="tab-icon"><i class='bx bx-star font-18 me-1'></i>
-										</div>
-										<div class="tab-title">Reviews</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<div class="tab-content pt-3">
-							<div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
-								<p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
-									stumptown
-									aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles
-									vegan
-									helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu
-									banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone.
-									Seitan aliquip quis cardigan american apparel, butcher voluptate nisi.</p>
-								<p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
-									stumptown
-									aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles
-									vegan
-									helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu
-									banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone.
-									Seitan aliquip quis cardigan american apparel, butcher voluptate nisi.</p>
-							</div>
-							<div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-								<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee
-									squid.
-									Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson
-									artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress,
-									commodo
-									enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud
-									organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
-									salvia
-									yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes
-									anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson
-									biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente
-									accusamus tattooed echo park.</p>
-							</div>
-							<div class="tab-pane fade" id="primarycontact" role="tabpanel">
-								<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's
-									organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify
-									pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy
-									hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred
-									pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel
-									fixie
-									etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them,
-									vinyl
-									craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-
-				<h6 class="text-uppercase mb-0">Related Product</h6>
-				<hr />
-				<div class="row row-cols-1 row-cols-lg-3">
-					<div class="col">
-						<div class="card">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="{% static 'images/products/16.png' %}" class="img-fluid" alt="...">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h6 class="card-title">Light Grey Headphone</h6>
-										<div class="cursor-pointer my-2">
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-secondary"></i>
-										</div>
-										<div class="clearfix">
-											<p class="mb-0 float-start fw-bold"><span
-													class="me-2 text-decoration-line-through text-secondary">$240</span><span>$199</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="{% static 'images/products/17.png' %}" class="img-fluid" alt="...">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h6 class="card-title">Black Cover iPhone 8</h6>
-										<div class="cursor-pointer my-2">
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-										</div>
-										<div class="clearfix">
-											<p class="mb-0 float-start fw-bold"><span
-													class="me-2 text-decoration-line-through text-secondary">$179</span><span>$110</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="{% static 'images/products/19.png' %}" class="img-fluid" alt="...">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h6 class="card-title">Men Hand Watch</h6>
-										<div class="cursor-pointer my-2">
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-warning"></i>
-											<i class="bx bxs-star text-secondary"></i>
-											<i class="bx bxs-star text-secondary"></i>
-										</div>
-										<div class="clearfix">
-											<p class="mb-0 float-start fw-bold"><span
-													class="me-2 text-decoration-line-through text-secondary">$150</span><span>$120</span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -809,7 +645,7 @@
 				class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
 		<footer class="page-footer">
-			<p class="mb-0">Copyright © 2023. CuteCat Inc. All rights reserved.</p>
+			<p class="mb-0">Copyright © 2023. CuteCat Lab. All rights reserved.</p>
 		</footer>
 	</div>
 	<!--end wrapper-->
@@ -1085,6 +921,29 @@
         //     myChart2.resize();
         // });
     </script>
+	<script>
+		// 通过 JavaScript 获取 cookie 中的用户名信息
+		function getCookieValue(name) {
+		  const cookies = document.cookie.split(';');
+		  for (let i = 0; i < cookies.length; i++) {
+			const cookie = cookies[i].trim();
+			if (cookie.startsWith(name + '=')) {
+			  return cookie.substring(name.length + 1);
+			}
+		  }
+		  return null;
+		}
+	  
+		// 在页面加载时获取用户名信息，并插入到相应的 HTML 元素中
+		document.addEventListener('DOMContentLoaded', function() {
+		  const username = getCookieValue('username');
+		  const userid = getCookieValue('userid');
+		  if (username) {
+			document.getElementById('uname').textContent = username;
+			document.getElementById('uuid').textContent = userid;
+		  }
+		});
+	  </script>
 
 </body>
 

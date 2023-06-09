@@ -12,7 +12,6 @@
 	<link href="{% static 'plugins/simplebar/css/simplebar.css' %}" rel="stylesheet" />
 	<link href="{% static 'plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet" />
 	<link href="{% static 'plugins/metismenu/css/metisMenu.min.css' %}" rel="stylesheet" />
-	<link href="{% static 'plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
 	<!-- loader-->
 	<link href="{% static 'css/pace.min.css' %}" rel="stylesheet" />
 	<script src="{% static 'js/pace.min.js' %}"></script>
@@ -84,7 +83,7 @@
 					<ul>
 						<li> <a href="/spammer/"><i class="bx bx-right-arrow-alt"></i>水军用户列表</a>
 						</li>
-						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
+						<li> <a href="/spammer/detail/"><i class="bx bx-right-arrow-alt"></i>水军用户画像</a>
 						</li>
 					</ul>
 				</li>
@@ -469,7 +468,7 @@
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<img src="{% static 'images/avatars/avatar-2.png' %}" class="user-img" alt="user avatar">
 							<div class="user-info ps-3">
-								<p class="user-name mb-0" id="uname"></p>
+								<p class="user-name mb-0" id="uname">z</p>
 								<p class="designattion mb-0" id="uuid"></p>
 							</div>
 						</a>
@@ -499,13 +498,13 @@
 		<div class="page-wrapper">
 			<div class="page-content">
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">水军用户画像</div>
+					<div class="breadcrumb-title pe-3">水军群体画像</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">水军用户画像</li>
+								<li class="breadcrumb-item active" aria-current="page">水军群体展示</li>
 							</ol>
 						</nav>
 					</div>
@@ -523,70 +522,19 @@
 					</div>
 				</div>
 
-				<!--正文开始-->
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-12">
 						<div class="card radius-10">
 							<div class="card-body">
-								<div class="d-flex flex-column align-items-center text-center">
-									<img src="{{people_dict.people_pic}}" alt="Admin" class="rounded-circle p-1 bg-primary" width="100">
-									<div class="mt-3">
-										<h4><a href="https://douban.com/people/{{people_dict.people_nickname}}">{{people_dict.people_name}}</a></h4>
-										<p class="text-secondary mb-1">{{people_dict.people_nickname}}</p>
+								<div class="panel panel-default ">
+									<div class = "panel-body ">
+										<div id="graph" style="width: 100%;height:600px;"></div>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card radius-10">
-							<div class="card-body">
-								<div class="row mt-3">
-									<div class="col-md-6">
-										<p>注册时间：<span class="text-success">{{people_dict.people_date}}</spam></p>
-										<p>IP属地：<span class="text-success">{{people_dict.people_ip}}</spam></p>
-										<p>关注数：<span class="text-success">{{people_dict.people_contacts}}</spam></p>
-										<p>粉丝数：<span class="text-success">{{people_dict.people_revcontacts}}</spam></p>
-									</div>
-									<div class="col-md-6">
-										<p>看过的电影数：<span class="text-success">{{people_dict.people_pastnum}}</spam></p>
-										<p>在看的电影数：<span class="text-success">{{people_dict.people_nownum}}</spam></p>
-										<p>加入的小组数：<span class="text-success">21</spam></p>
-										<p>分析结论：<span class="text-warning">疑似商业水军</spam></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="card radius-10">
-							<div class="card-body">
-								<div class="chart-container1 mb-4">
-									<canvas id="chart1"></canvas>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4">
-						<div class="card radius-10">
-							<div class="card-body">
-								<div id="chart4"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="card radius-10">
-							<div class="card-body">
-								<div class="chart-container1">
-									<canvas id="chart2"></canvas>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<!--end page wrapper -->
@@ -703,269 +651,14 @@
 	<script src="{% static 'plugins/simplebar/js/simplebar.min.js' %}"></script>
 	<script src="{% static 'plugins/metismenu/js/metisMenu.min.js' %}"></script>
 	<script src="{% static 'plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
-
-	<script src="{% static 'plugins/chartjs/js/Chart.min.js' %}"></script>
-
-	<script src="{% static 'plugins/highcharts/js/highcharts.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/highcharts-more.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/variable-pie.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/solid-gauge.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/highcharts-3d.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/cylinder.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/funnel3d.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/exporting.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/export-data.js' %}"></script>
-	<script src="{% static 'plugins/highcharts/js/accessibility.js' %}"></script>
-	{% comment %} <script src="{% static 'plugins/highcharts/js/highcharts-custom.script.js' %}"></script> {% endcomment %}
-	
+	<script src="{% static 'js/echarts.min.js' %}"></script>
+	<script src="{% static 'js/echarts.common.min.js' %}"></script>  
 	<!--app JS-->
 	<script src="{% static 'js/app.js' %}"></script>
-
 	<script>
-		$(function () {
-			"use strict";
-			// chart4
-			// Make monochrome colors
-			var pieColors = (function () {
-				var colors = [],
-					base = Highcharts.getOptions().colors[0],
-					i;
-				for (i = 0; i < 10; i += 1) {
-					// Start out with a darkened base color (negative brighten), and end
-					// up with a much brighter color
-					colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
-				}
-				return colors;
-			}());
-			// Build the chart
-			Highcharts.chart('chart4', {
-				chart: {
-					plotBackgroundColor: null,
-					plotBorderWidth: null,
-					plotShadow: false,
-					styledMode: true,
-					type: 'pie'
-				},
-				credits: {
-					enabled: false
-				},
-				title: {
-					text: '该用户发布评分情况'
-				},
-				tooltip: {
-					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-				},
-				accessibility: {
-					point: {
-						valueSuffix: '%'
-					}
-				},
-				plotOptions: {
-					pie: {
-						allowPointSelect: true,
-						cursor: 'pointer',
-						colors: pieColors,
-						dataLabels: {
-							enabled: true,
-							format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-							distance: -50,
-							filter: {
-								property: 'percentage',
-								operator: '>',
-								value: 4
-							},
-							style: {
-								color: '#ffffff'
-							}
-						}
-					}
-				},
-				series: [{
-					name: '占比',
-					data: [{
-						name: '5星',
-						y: 51.41
-					}, {
-						name: '4星',
-						y: 21.84
-					}, {
-						name: '3星',
-						y: 10.85
-					}, {
-						name: '2星',
-						y: 4.67
-					}, {
-						name: '1星',
-						y: 11.23
-					}],
-				}]
-			});
 
-			/*var pieColors = (function () {
-				var colors = [],
-					base = Highcharts.getOptions().colors[0],
-					i;
-				for (i = 0; i < 10; i += 1) {
-					// Start out with a darkened base color (negative brighten), and end
-					// up with a much brighter color
-					colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
-				}
-				return colors;
-			}());
-			// Build the chart
-			Highcharts.chart('chart5', {
-				chart: {
-					plotBackgroundColor: null,
-					plotBorderWidth: null,
-					plotShadow: false,
-					styledMode: true,
-					type: 'pie'
-				},
-				credits: {
-					enabled: false
-				},
-				title: {
-					text: '该用户所评电影类别分析'
-				},
-				tooltip: {
-					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-				},
-				accessibility: {
-					point: {
-						valueSuffix: '%'
-					}
-				},
-				plotOptions: {
-					pie: {
-						allowPointSelect: true,
-						cursor: 'pointer',
-						colors: pieColors,
-						dataLabels: {
-							enabled: true,
-							format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
-							distance: -50,
-							filter: {
-								property: 'percentage',
-								operator: '>',
-								value: 4
-							},
-							style: {
-								color: '#ffffff'
-							}
-						}
-					}
-				},
-				series: [{
-					name: '类别',
-					data: [{
-						name: '剧情',
-						y: 41.41
-					}, {
-						name: '战争',
-						y: 31.84
-					}, {
-						name: '爱情',
-						y: 12.85
-					}, {
-						name: '动作',
-						y: 7.67
-					}, {
-						name: '其他',
-						y: 6.23
-					}],
-				}]
-			});*/
-
-		});
-	</script>
-
-	<script>
-		$(function () {
-			"use strict";
-			// chart 1
-			new Chart(document.getElementById("chart1"), {
-				type: 'radar',
-				data: {
-					labels: ["剧情", "战争", "爱情", "动作", "科幻", "历史"],
-					datasets: [{
-						label:'类型占比',
-						fill: true,
-						backgroundColor: "rgba(255,99,132,0.2)",
-						borderColor: "rgba(255,99,132,1)",
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "rgba(255,99,132,1)",
-						pointBorderColor: "#fff",
-						data: [25.48, 34.16, 17.61, 13.06, 4.45, 5.24]
-					}]
-				},
-				options: {
-					maintainAspectRatio: false,
-					title: {
-						display: true,
-						text: '该用户观影偏好',
-						fontSize:18
-					}
-				}
-			});
-
-			// chart 2
-			var ctx = document.getElementById("chart2").getContext('2d');
-			var myChart = new Chart(ctx, {
-				type: 'bar',
-				data: {
-					labels: ['0-4点', '5-8点', '9-12点', '13-16点', '17-20点', '21-24点'],
-					datasets: [{
-						label: '发言次数',
-						data: [31, 20, 6, 16, 21, 11],
-						barPercentage: .5,
-						backgroundColor: "#f41127",
-						borderRadius:10
-					}]
-				},
-				options: {
-					title: {
-						display: true,
-						text: '该用户发评时段分析',
-						fontSize:18
-					},
-					maintainAspectRatio: false,
-					legend: {
-						display: true,
-						labels: {
-							fontColor: '#585757',
-							boxWidth: 40
-						}
-					},
-					tooltips: {
-						enabled: true
-					},
-					scales: {
-						xAxes: [{
-							ticks: {
-								beginAtZero: true,
-								fontColor: '#585757'
-							},
-							gridLines: {
-								display: true,
-								color: "rgba(0, 0, 0, 0.07)"
-							},
-						}],
-						yAxes: [{
-							ticks: {
-								beginAtZero: true,
-								fontColor: '#585757'
-							},
-							gridLines: {
-								display: true,
-								color: "rgba(0, 0, 0, 0.07)"
-							},
-						}]
-					}
-				}
-			});
-		});
-	</script>
-	<script>
+		data = [{name: '长空之王', category: 1, id: 0}, {name: '流浪地球2', category: 0, id: 1}, {name: '无名', category: 1, id: 2}, {name: '满江红', category: 0, id: 3}, {name: '中国乒乓之绝地反击', category: 4, id: 4}, {name: '狂飙', category: 4, id: 5}, {name: '黑暗荣耀 第二季 / 더 글로리2', category: 4, id: 6}, {name: '宇宙探索编辑部', category: 4, id: 7}, {name: '龙马精神', category: 4, id: 8}, {name: '肖申克的救赎 / The Shawshank Redemption', category: 4, id: 9}, {name: '无名', category: 1, id: 10}, {name: '北京租房', category: 4, id: 11}, {name: '冰雨火', category: 1, id: 12}, {name: '豆瓣十级学者固定考点', category: 3, id: 13}, {name: '豆瓣鹅组', category: 2, id: 14}, {name: '上班这件事', category: 3, id: 15}, {name: '国产剧', category: 3, id: 16}, {name: '王牌部队', category: 1, id: 17}, {name: '佳片推荐 （只迷电影不装13）', category: 2, id: 18}, {name: '琅琊榜', category: 3, id: 19}, {name: '1591741', category: 2, id: 20}, {name: 'kakaloveu', category: 2, id: 21}, {name: '172669629', category: 0, id: 22}, {name: '168179672', category: 4, id: 23}, {name: '162633481', category: 0, id: 24}, {name: '43752707', category: 3, id: 25}, {name: '83569030', category: 0, id: 26}, {name: '200694768', category: 1, id: 27}, {name: '227065027', category: 1, id: 28}, {name: '262459344', category: 1, id: 29}, {name: '262456372', category: 3, id: 30}, {name: '168482735', category: 1, id: 31}, {name: '171758364', category: 4, id: 32}, {name: '268970448', category: 1, id: 33}, {name: '205914457', category: 1, id: 34}, {name: '212724846', category: 4, id: 35}, {name: '166455396', category: 4, id: 36}, {name: '139586464', category: 3, id: 37}, {name: '205867765', category: 4, id: 38}, {name: '169402662', category: 3, id: 39}, {name: 'guiyuan33', category: 2, id: 40}, {name: '188240671', category: 2, id: 41}, {name: '188240671', category: 2, id: 42}, {name: 'bieqiangwoshuye', category: 4, id: 43}, {name: 'xiaozhangjiejie', category: 0, id: 44}, {name: 'busanmovie', category: 1, id: 45}, {name: '251666593', category: 1, id: 46}, {name: '251666593', category: 3, id: 47}, {name: '251666593', category: 2, id: 48}, {name: '152734515', category: 4, id: 49}, {name: '268971177', category: 1, id: 50}, {name: 'tianer119', category: 2, id: 51}, {name: '140759409', category: 3, id: 52}, {name: '213491329', category: 3, id: 53}, {name: '98676837', category: 2, id: 54}, {name: '98676837', category: 2, id: 55}, {name: '2681801', category: 2, id: 56}, {name: 'cherrywasthere', category: 0, id: 57}, {name: '191634576', category: 4, id: 58}, {name: '142882932', category: 0, id: 59}, {name: '161865119', category: 3, id: 60}, {name: 'iriese', category: 0, id: 61}, {name: '209219499', category: 1, id: 62}, {name: '204784074', category: 1, id: 63}, {name: '165914926', category: 3, id: 64}, {name: '165914926', category: 2, id: 65}, {name: '165914926', category: 3, id: 66}, {name: '240412098', category: 0, id: 67}];
+		links = [{source: 20, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 27, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 28, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 29, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 30, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 31, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 32, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 33, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 34, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 35, target: 0, value: 'watched', category: 1, symbolSize: 10}, {source: 22, target: 1, value: 'watched', category: 1, symbolSize: 10}, {source: 26, target: 1, value: 'watched', category: 1, symbolSize: 10}, {source: 35, target: 1, value: 'watched', category: 1, symbolSize: 10}, {source: 36, target: 1, value: 'watched', category: 1, symbolSize: 10}, {source: 37, target: 1, value: 'watched', category: 1, symbolSize: 10}, {source: 38, target: 1, value: 'watched', category: 1, symbolSize: 10}, {source: 39, target: 1, value: 'watched', category: 1, symbolSize: 10}, {source: 26, target: 2, value: 'watched', category: 1, symbolSize: 10}, {source: 28, target: 2, value: 'watched', category: 1, symbolSize: 10}, {source: 29, target: 2, value: 'watched', category: 1, symbolSize: 10}, {source: 31, target: 2, value: 'watched', category: 1, symbolSize: 10}, {source: 33, target: 2, value: 'watched', category: 1, symbolSize: 10}, {source: 38, target: 2, value: 'watched', category: 1, symbolSize: 10}, {source: 22, target: 3, value: 'watched', category: 1, symbolSize: 10}, {source: 24, target: 3, value: 'watched', category: 1, symbolSize: 10}, {source: 26, target: 3, value: 'watched', category: 1, symbolSize: 10}, {source: 38, target: 3, value: 'watched', category: 1, symbolSize: 10}, {source: 39, target: 3, value: 'watched', category: 1, symbolSize: 10}, {source: 32, target: 4, value: 'watched', category: 1, symbolSize: 10}, {source: 33, target: 4, value: 'watched', category: 1, symbolSize: 10}, {source: 35, target: 4, value: 'watched', category: 1, symbolSize: 10}, {source: 38, target: 4, value: 'watched', category: 1, symbolSize: 10}, {source: 32, target: 5, value: 'watched', category: 1, symbolSize: 10}, {source: 36, target: 5, value: 'watched', category: 1, symbolSize: 10}, {source: 38, target: 5, value: 'watched', category: 1, symbolSize: 10}, {source: 39, target: 5, value: 'watched', category: 1, symbolSize: 10}, {source: 21, target: 6, value: 'watched', category: 1, symbolSize: 10}, {source: 27, target: 6, value: 'watched', category: 1, symbolSize: 10}, {source: 35, target: 6, value: 'watched', category: 1, symbolSize: 10}, {source: 38, target: 6, value: 'watched', category: 1, symbolSize: 10}, {source: 23, target: 7, value: 'watched', category: 1, symbolSize: 10}, {source: 30, target: 7, value: 'watched', category: 1, symbolSize: 10}, {source: 33, target: 7, value: 'watched', category: 1, symbolSize: 10}, {source: 20, target: 8, value: 'watched', category: 1, symbolSize: 10}, {source: 32, target: 8, value: 'watched', category: 1, symbolSize: 10}, {source: 35, target: 8, value: 'watched', category: 1, symbolSize: 10}, {source: 26, target: 9, value: 'watched', category: 1, symbolSize: 10}, {source: 28, target: 9, value: 'watched', category: 1, symbolSize: 10}, {source: 36, target: 9, value: 'watched', category: 1, symbolSize: 10}, {source: 28, target: 10, value: 'joins', category: 3, symbolSize: 10}, {source: 31, target: 10, value: 'joins', category: 3, symbolSize: 10}, {source: 33, target: 10, value: 'joins', category: 3, symbolSize: 10}, {source: 34, target: 10, value: 'joins', category: 3, symbolSize: 10}, {source: 32, target: 11, value: 'joins', category: 3, symbolSize: 10}, {source: 28, target: 12, value: 'joins', category: 3, symbolSize: 10}, {source: 31, target: 12, value: 'joins', category: 3, symbolSize: 10}, {source: 35, target: 12, value: 'joins', category: 3, symbolSize: 10}, {source: 30, target: 13, value: 'joins', category: 3, symbolSize: 10}, {source: 37, target: 13, value: 'joins', category: 3, symbolSize: 10}, {source: 20, target: 14, value: 'joins', category: 3, symbolSize: 10}, {source: 21, target: 14, value: 'joins', category: 3, symbolSize: 10}, {source: 25, target: 15, value: 'joins', category: 3, symbolSize: 10}, {source: 39, target: 15, value: 'joins', category: 3, symbolSize: 10}, {source: 37, target: 16, value: 'joins', category: 3, symbolSize: 10}, {source: 39, target: 16, value: 'joins', category: 3, symbolSize: 10}, {source: 31, target: 17, value: 'joins', category: 3, symbolSize: 10}, {source: 23, target: 18, value: 'joins', category: 3, symbolSize: 10}, {source: 37, target: 18, value: 'joins', category: 3, symbolSize: 10}, {source: 30, target: 19, value: 'joins', category: 3, symbolSize: 10}, {source: 39, target: 19, value: 'joins', category: 3, symbolSize: 10}, {source: 20, target: 40, value: 'follow', category: 2, symbolSize: 10}, {source: 21, target: 41, value: 'follow', category: 2, symbolSize: 10}, {source: 21, target: 42, value: 'follow', category: 2, symbolSize: 10}, {source: 23, target: 43, value: 'follow', category: 2, symbolSize: 10}, {source: 26, target: 44, value: 'follow', category: 2, symbolSize: 10}, {source: 28, target: 45, value: 'follow', category: 2, symbolSize: 10}, {source: 29, target: 46, value: 'follow', category: 2, symbolSize: 10}, {source: 29, target: 47, value: 'follow', category: 2, symbolSize: 10}, {source: 29, target: 48, value: 'follow', category: 2, symbolSize: 10}, {source: 32, target: 49, value: 'follow', category: 2, symbolSize: 10}, {source: 33, target: 50, value: 'follow', category: 2, symbolSize: 10}, {source: 36, target: 51, value: 'follow', category: 2, symbolSize: 10}, {source: 37, target: 52, value: 'follow', category: 2, symbolSize: 10}, {source: 39, target: 53, value: 'follow', category: 2, symbolSize: 10}, {source: 54, target: 20, value: 'follow', category: 2, symbolSize: 10}, {source: 55, target: 20, value: 'follow', category: 2, symbolSize: 10}, {source: 56, target: 21, value: 'follow', category: 2, symbolSize: 10}, {source: 57, target: 22, value: 'follow', category: 2, symbolSize: 10}, {source: 58, target: 23, value: 'follow', category: 2, symbolSize: 10}, {source: 59, target: 24, value: 'follow', category: 2, symbolSize: 10}, {source: 60, target: 25, value: 'follow', category: 2, symbolSize: 10}, {source: 61, target: 26, value: 'follow', category: 2, symbolSize: 10}, {source: 62, target: 27, value: 'follow', category: 2, symbolSize: 10}, {source: 63, target: 33, value: 'follow', category: 2, symbolSize: 10}, {source: 64, target: 37, value: 'follow', category: 2, symbolSize: 10}, {source: 65, target: 37, value: 'follow', category: 2, symbolSize: 10}, {source: 66, target: 37, value: 'follow', category: 2, symbolSize: 10}, {source: 67, target: 39, value: 'follow', category: 2, symbolSize: 10}, {source: 43, target: 5, value: 'watch', category: 0, symbolSize: 10}, {source: 44, target: 3, value: 'watch', category: 0, symbolSize: 10}, {source: 45, target: 2, value: 'watch', category: 0, symbolSize: 10}, {source: 49, target: 7, value: 'watch', category: 0, symbolSize: 10}, {source: 50, target: 0, value: 'watch', category: 0, symbolSize: 10}, {source: 52, target: 1, value: 'watch', category: 0, symbolSize: 10}, {source: 56, target: 2, value: 'watch', category: 0, symbolSize: 10}, {source: 57, target: 3, value: 'watch', category: 0, symbolSize: 10}, {source: 58, target: 9, value: 'watch', category: 0, symbolSize: 10}, {source: 59, target: 1, value: 'watch', category: 0, symbolSize: 10}, {source: 61, target: 1, value: 'watch', category: 0, symbolSize: 10}, {source: 62, target: 0, value: 'watch', category: 0, symbolSize: 10}, {source: 63, target: 0, value: 'watch', category: 0, symbolSize: 10}, {source: 67, target: 1, value: 'watch', category: 0, symbolSize: 10}, {source: 40, target: 14, value: 'joins', category: 3, symbolSize: 10}, {source: 41, target: 14, value: 'joins', category: 3, symbolSize: 10}, {source: 42, target: 18, value: 'joins', category: 3, symbolSize: 10}, {source: 46, target: 10, value: 'joins', category: 3, symbolSize: 10}, {source: 47, target: 16, value: 'joins', category: 3, symbolSize: 10}, {source: 48, target: 18, value: 'joins', category: 3, symbolSize: 10}, {source: 51, target: 14, value: 'joins', category: 3, symbolSize: 10}, {source: 53, target: 15, value: 'joins', category: 3, symbolSize: 10}, {source: 54, target: 15, value: 'joins', category: 3, symbolSize: 10}, {source: 55, target: 18, value: 'joins', category: 3, symbolSize: 10}, {source: 60, target: 19, value: 'joins', category: 3, symbolSize: 10}, {source: 64, target: 13, value: 'joins', category: 3, symbolSize: 10}, {source: 65, target: 14, value: 'joins', category: 3, symbolSize: 10}, {source: 66, target: 19, value: 'joins', category: 3, symbolSize: 10}];
 		// 通过 JavaScript 获取 cookie 中的用户名信息
 		function getCookieValue(name) {
 		  const cookies = document.cookie.split(';');
@@ -989,6 +682,114 @@
 		});
 	</script>
 
+	<script>
+		var myChart = echarts.init(document.getElementById('graph'));
+    
+    option = {
+	    title: {
+	        text: ''
+	    },
+	    tooltip: {},
+	    animationDurationUpdate: 1500,
+	    animationEasingUpdate: 'quinticInOut',
+	    label: {
+	        normal: {
+	            show: true,
+	            textStyle: {
+	                fontSize: 12
+	            },
+	        }
+	    },
+	    legend: {
+	        x: "center",
+	        show: false
+	    },
+	    series: [
+
+	        {
+	            type: 'graph',
+	            layout: 'force',
+	            symbolSize: 45,
+				draggable: true, // 启用节点拖动功能
+	            focusNodeAdjacency: true,
+	            roam: true,
+	            edgeSymbol: ['none', 'arrow'],
+	            categories: [{
+	                name: '查询实体',
+	                itemStyle: {
+	                    normal: {
+	                        color: "#009800",
+	                    }
+	                }
+	            }, {
+	                name: 'instance',
+	                itemStyle: {
+	                    normal: {
+	                        color: "#4592FF",
+	                    }
+	                }
+	            }, {
+	                name: 'instanc',
+	                itemStyle: {
+	                    normal: {
+	                        color: "#EA3FF7",
+	                    }
+	                }
+	            }, {
+	                name: 'instan',
+	                itemStyle: {
+	                    normal: {
+	                        color: "#261EFF",
+	                    }
+	                }
+	            }, {
+	                name: 'class',
+	                itemStyle: {
+	                    normal: {
+	                        color: "#C71585",
+	                    }
+	                }
+	            }],
+	            label: {
+	                normal: {
+	                    show: true,
+	                    textStyle: {
+	                        fontSize: 12,
+	                    },
+	                }
+	            },
+				emphasis: {
+					show: true
+				},
+	            force: {
+	                repulsion: 1000
+	            },
+	            edgeSymbolSize: [4, 50],
+	            edgeLabel: {
+	                normal: {
+	                    show: true,
+	                    textStyle: {
+	                        fontSize: 10
+	                    },
+	                    formatter: "{c}"
+	                }
+	            },
+	            data: data,
+	            links: links,
+	            lineStyle: {
+	                normal: {
+	                    opacity: 0.9,
+	                    width: 1.3,
+	                    curveness: 0,
+	                    color:"#262626",
+	                }
+	            }
+	        }
+	    ]
+	};
+	// 使用刚指定的配置项和数据显示图表。
+	myChart.setOption(option);
+	</script>
 </body>
 
 </html>

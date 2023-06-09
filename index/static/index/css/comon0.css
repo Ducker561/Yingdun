@@ -129,7 +129,7 @@ a:hover{ color:#06c; text-decoration: none!important}
 .tit02:after{ right:0;}
 .tit02:before{ left:0;}
 
-.wrap{ height:4.0rem; overflow: hidden;}
+.wrap{ height:5.0rem; overflow: hidden;}
 .wrap li{  line-height:.42rem; height:.42rem; font-size: .18rem; text-indent: .24rem; margin-bottom: .1rem; }
 .wrap li p{border: 1px solid rgba(25,186,139,.17);color: rgba(255,255,255,.6);}
 .sy{ float:left; width: 33%; height: 2.2rem; margin-top: -.25rem;}
